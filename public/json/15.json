@@ -1,7 +1,7 @@
 {
   "name": "Diamond NFT #15",
   "description": "Diamond NFTs by DNXT",
-  "image": "../images/15.png",
+  "image": "https://diamondnxt.github.io/diamondnxt/images/15.png",
   "edition": 15,
   "attributes": [
     {
