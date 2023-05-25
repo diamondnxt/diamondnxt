@@ -18,24 +18,24 @@ const App = () => {
     <Router>
       <Header {...walletProps} />
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/explorer/:id" element={
+        <Route exact path="/diamondnxt" element={<Home />} />
+        <Route path="/diamondnxt/explorer/:id" element={
           <FullCard
             {...walletProps}
           />}
         />
-        <Route exact path="/explorer" element={
+        <Route exact path="/diamondnxt/explorer" element={
 
           <Explorer />
         }
         />
-        <Route exact path="/dapp" element={
+        <Route exact path="/diamondnxt/dapp" element={
 
           <Dapp
             {...walletProps}
           />
         } />
-        <Route exact path="/profile" element={
+        <Route exact path="/diamondnxt/profile" element={
 
           <Profile
             {...walletProps}

@@ -31,18 +31,18 @@ const Header = (props) => {
             <FaBars className="hamburger" onClick={toggleMenu} />
             {showDropdown && (
               <>
-                <Link className="menuItem" to="/explorer">Explorer</Link>
-                <Link className="menuItem" to="/profile">Profile</Link>
-                <Link className="menuItem" to="/dapp">Dapp</Link>
+                <Link className="menuItem" to="/diamondnxt/explorer">Explorer</Link>
+                <Link className="menuItem" to="/diamondnxt/profile">Profile</Link>
+                <Link className="menuItem" to="/diamondnxt/dapp">Dapp</Link>
                 <a className="menuItem" href="https://github.com/diamondnxt" target="_blank" rel="noopener noreferrer">Docs</a>
               </>
             )}
           </>
         ) : (
           <>
-            <Link className="menuItem" to="/explorer">Explorer</Link>
-            <Link className="menuItem" to="/profile">Profile</Link>
-            <Link className="menuItem" to="/dapp">Dapp</Link>
+            <Link className="menuItem" to="/diamondnxt/explorer">Explorer</Link>
+            <Link className="menuItem" to="/diamondnxt/profile">Profile</Link>
+            <Link className="menuItem" to="/diamondnxt/dapp">Dapp</Link>
             <a className="menuItem" href="https://github.com/diamondnxt" target="_blank" rel="noopener noreferrer">Docs</a>
           </>
         )}

@@ -1,0 +1,49 @@
+{
+  "name": "Diamond NFT #17",
+  "description": "Diamond NFTs by DNXT",
+  "image": "../images/17.png",
+  "edition": 17,
+  "attributes": [
+    {
+      "trait_type": "Cut",
+      "value": "Poor"
+    },
+    {
+      "trait_type": "Clarity",
+      "value": "I3"
+    },
+    {
+      "trait_type": "Color",
+      "value": "J"
+    },
+    {
+      "trait_type": "Carat Weight",
+      "value": "0.80"
+    },
+    {
+      "trait_type": "Shape",
+      "value": "Heart"
+    },
+    {
+      "trait_type": "Symmetry",
+      "value": "Good"
+    },
+    {
+      "trait_type": "Fluorescence",
+      "value": "Strong"
+    },
+    {
+      "trait_type": "Polish",
+      "value": "Good"
+    },
+    {
+      "trait_type": "Lab",
+      "value": "GIA"
+    },
+    {
+      "trait_type": "Certificate",
+      "value": "ygbnw"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}
