@@ -1,0 +1,78 @@
+:root {
+    --soft-blue: #6D3B47;
+    --texthover: #BA2C73;
+
+    --main-bg: #191D32;
+    --card-bg: #282F44;
+    --dark-blue: #453A49;
+
+    --white: hsl(0, 0%, 100%);
+}
+.certificate-container,
+.listbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .certificate-label,
+  .listbox-label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .listbox-options {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    padding: 4px;
+  }
+  
+  .listbox-options .listbox-option {
+    cursor: default;
+    padding: 2px 8px;
+  }
+  
+  .listbox-options .listbox-option-active {
+    background-color: #4f9ee3;
+    color: #ffffff;
+  }
+  
+  .custom-active {
+    color: #000000; /* Replace with your desired color */
+    background-color: #ffffff;; /* Replace with your desired background color */
+    cursor: default;
+    select: none;
+    position: relative;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-right: 4px;
+  }
+  
+  .custom-inactive {
+    color: #ffffff; /* Replace with your desired color */
+    background-color: transparent; /* Replace with your desired background color */
+    cursor: default;
+    select: none;
+    position: relative;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-right: 4px;
+  }
+  
+  .certificate-container {
+    /* Add your styles here */
+  }
+  
+  .certificate-label {
+    /* Add your styles here */
+  }
+  
+  .certificate-container input {
+    /* Add a transition for the input field here */
+    transition: all 0.3s ease-in-out;
+  }
+  

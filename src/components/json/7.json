@@ -1,0 +1,49 @@
+{
+  "name": "Diamond NFT #7",
+  "description": "Diamond NFTs by DNXT",
+  "image": "../images/7.png",
+  "edition": 7,
+  "attributes": [
+    {
+      "trait_type": "Cut",
+      "value": "Good"
+    },
+    {
+      "trait_type": "Clarity",
+      "value": "Internally Flawless"
+    },
+    {
+      "trait_type": "Color",
+      "value": "K"
+    },
+    {
+      "trait_type": "Carat Weight",
+      "value": "0.22"
+    },
+    {
+      "trait_type": "Shape",
+      "value": "Emerald"
+    },
+    {
+      "trait_type": "Symmetry",
+      "value": "Fair"
+    },
+    {
+      "trait_type": "Fluorescence",
+      "value": "Medium"
+    },
+    {
+      "trait_type": "Polish",
+      "value": "Very Good"
+    },
+    {
+      "trait_type": "Lab",
+      "value": "EGL"
+    },
+    {
+      "trait_type": "Certificate",
+      "value": "t8qpy"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}
