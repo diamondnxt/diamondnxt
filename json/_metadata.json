@@ -1,0 +1,640 @@
+[
+  {
+    "name": "Diamond NFT #1",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/1.png",
+    "edition": 1,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "SI1"
+      },
+      {
+        "trait_type": "Color",
+        "value": "V"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "0.45"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Pear"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Medium"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "AGS"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "4h0m79"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #10",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/10.png",
+    "edition": 10,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "I3"
+      },
+      {
+        "trait_type": "Color",
+        "value": "J"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "0.56"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Round"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Medium"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "EGL"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "gc9oxp"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #11",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/11.png",
+    "edition": 11,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "I3"
+      },
+      {
+        "trait_type": "Color",
+        "value": "G"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "2.22"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Round"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Medium"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "AGS"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "gzdygs"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #12",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/12.png",
+    "edition": 12,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "Internally Flawless"
+      },
+      {
+        "trait_type": "Color",
+        "value": "F"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "1.94"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Pear"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "None"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "Other"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "q4foboh"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #13",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/13.png",
+    "edition": 13,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "VVS1"
+      },
+      {
+        "trait_type": "Color",
+        "value": "R"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "2.81"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Heart"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Strong"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "AGS"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "kpoceb"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #14",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/14.png",
+    "edition": 14,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "Flawless"
+      },
+      {
+        "trait_type": "Color",
+        "value": "T"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "1.67"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Pear"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Faint"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "GIA"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "mt1sswk"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #15",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/15.png",
+    "edition": 15,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "SI2"
+      },
+      {
+        "trait_type": "Color",
+        "value": "E"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "2.05"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Cushion"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "None"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "Other"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "z6liyp"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #16",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/16.png",
+    "edition": 16,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "VS2"
+      },
+      {
+        "trait_type": "Color",
+        "value": "Q"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "2.44"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Princess"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Very Strong"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "Other"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "k9erl"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #17",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/17.png",
+    "edition": 17,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "I3"
+      },
+      {
+        "trait_type": "Color",
+        "value": "J"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "0.80"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Heart"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Strong"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "GIA"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "ygbnw"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #18",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/18.png",
+    "edition": 18,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "Flawless"
+      },
+      {
+        "trait_type": "Color",
+        "value": "L"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "1.24"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Oval"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Faint"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "Other"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "oos5lap"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #19",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/19.png",
+    "edition": 19,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "VS1"
+      },
+      {
+        "trait_type": "Color",
+        "value": "K"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "1.56"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Emerald"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Faint"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "Other"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "xc36gj"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #2",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/2.png",
+    "edition": 2,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "I1"
+      },
+      {
+        "trait_type": "Color",
+        "value": "M"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "0.50"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Radiant"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Faint"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Poor"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "EGL"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "1qu9ld"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  },
+  {
+    "name": "Diamond NFT #20",
+    "description": "Diamond NFTs by DNXT",
+    "image": "../images/20.png",
+    "edition": 20,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Fair"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "I2"
+      },
+      {
+        "trait_type": "Color",
+        "value": "R"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": "0.68"
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Oval"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Faint"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Lab",
+        "value": "GIA"
+      },
+      {
+        "trait_type": "Certificate",
+        "value": "zmtoqk"
+      }
+    ],
+    "compiler": "HashLips Art Engine"
+  }
+  
+]
