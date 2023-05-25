@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.5de51cff.chunk.css",
-    "main.js": "/static/js/main.a5dcdd10.chunk.js",
-    "main.js.map": "/static/js/main.a5dcdd10.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.3505e3a5.js",
-    "runtime-main.js.map": "/static/js/runtime-main.3505e3a5.js.map",
-    "static/js/2.f2d24f88.chunk.js": "/static/js/2.f2d24f88.chunk.js",
-    "static/js/2.f2d24f88.chunk.js.map": "/static/js/2.f2d24f88.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.5de51cff.chunk.css.map": "/static/css/main.5de51cff.chunk.css.map",
-    "static/js/2.f2d24f88.chunk.js.LICENSE.txt": "/static/js/2.f2d24f88.chunk.js.LICENSE.txt",
-    "static/media/bnb.92643887.png": "/static/media/bnb.92643887.png",
-    "static/media/eth.0f54f490.png": "/static/media/eth.0f54f490.png",
-    "static/media/logo.af39cae0.svg": "/static/media/logo.af39cae0.svg",
-    "static/media/matic.a2282492.png": "/static/media/matic.a2282492.png",
-    "static/media/pls.cd143d27.png": "/static/media/pls.cd143d27.png"
+    "main.css": "/diamondnxt/static/css/main.5de51cff.chunk.css",
+    "main.js": "/diamondnxt/static/js/main.e537b309.chunk.js",
+    "main.js.map": "/diamondnxt/static/js/main.e537b309.chunk.js.map",
+    "runtime-main.js": "/diamondnxt/static/js/runtime-main.25681bb2.js",
+    "runtime-main.js.map": "/diamondnxt/static/js/runtime-main.25681bb2.js.map",
+    "static/js/2.376209a3.chunk.js": "/diamondnxt/static/js/2.376209a3.chunk.js",
+    "static/js/2.376209a3.chunk.js.map": "/diamondnxt/static/js/2.376209a3.chunk.js.map",
+    "index.html": "/diamondnxt/index.html",
+    "static/css/main.5de51cff.chunk.css.map": "/diamondnxt/static/css/main.5de51cff.chunk.css.map",
+    "static/js/2.376209a3.chunk.js.LICENSE.txt": "/diamondnxt/static/js/2.376209a3.chunk.js.LICENSE.txt",
+    "static/media/bnb.92643887.png": "/diamondnxt/static/media/bnb.92643887.png",
+    "static/media/eth.0f54f490.png": "/diamondnxt/static/media/eth.0f54f490.png",
+    "static/media/logo.af39cae0.svg": "/diamondnxt/static/media/logo.af39cae0.svg",
+    "static/media/matic.a2282492.png": "/diamondnxt/static/media/matic.a2282492.png",
+    "static/media/pls.cd143d27.png": "/diamondnxt/static/media/pls.cd143d27.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.3505e3a5.js",
-    "static/js/2.f2d24f88.chunk.js",
+    "static/js/runtime-main.25681bb2.js",
+    "static/js/2.376209a3.chunk.js",
     "static/css/main.5de51cff.chunk.css",
-    "static/js/main.a5dcdd10.chunk.js"
+    "static/js/main.e537b309.chunk.js"
   ]
 }
