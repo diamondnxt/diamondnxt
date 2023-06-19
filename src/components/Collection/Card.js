@@ -12,7 +12,7 @@ function Card (data) {
 
 
     const newTo = {
-        pathname:"/diamondnxt/explorer/"+data.data.edition
+        pathname:"/explorer/"+data.data.edition
     }
 
 

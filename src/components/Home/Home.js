@@ -14,7 +14,7 @@ const Home = () => {
       <br></br>
       <img src={Logo} width="256px" />
       <br></br>      <br></br>      <br></br>
-      <Link className="menuItem" to="/diamondnxt/dapp">Launch       <br></br>App</Link>
+      <Link className="menuItem" to="/dapp">Launch       <br></br>App</Link>
 
       <br></br>
       <br></br>
