@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/diamondnxt/static/css/main.816f4e71.chunk.css",
-    "main.js": "/diamondnxt/static/js/main.a2762f3e.chunk.js",
-    "main.js.map": "/diamondnxt/static/js/main.a2762f3e.chunk.js.map",
-    "runtime-main.js": "/diamondnxt/static/js/runtime-main.25681bb2.js",
-    "runtime-main.js.map": "/diamondnxt/static/js/runtime-main.25681bb2.js.map",
-    "static/js/2.2efd9baa.chunk.js": "/diamondnxt/static/js/2.2efd9baa.chunk.js",
-    "static/js/2.2efd9baa.chunk.js.map": "/diamondnxt/static/js/2.2efd9baa.chunk.js.map",
-    "index.html": "/diamondnxt/index.html",
-    "static/css/main.816f4e71.chunk.css.map": "/diamondnxt/static/css/main.816f4e71.chunk.css.map",
-    "static/js/2.2efd9baa.chunk.js.LICENSE.txt": "/diamondnxt/static/js/2.2efd9baa.chunk.js.LICENSE.txt",
-    "static/media/bnb.92643887.png": "/diamondnxt/static/media/bnb.92643887.png",
-    "static/media/eth.0f54f490.png": "/diamondnxt/static/media/eth.0f54f490.png",
-    "static/media/logo.af39cae0.svg": "/diamondnxt/static/media/logo.af39cae0.svg",
-    "static/media/matic.a2282492.png": "/diamondnxt/static/media/matic.a2282492.png",
-    "static/media/pls.cd143d27.png": "/diamondnxt/static/media/pls.cd143d27.png"
+    "main.css": "/static/css/main.ea5753bc.chunk.css",
+    "main.js": "/static/js/main.c98b69f4.chunk.js",
+    "main.js.map": "/static/js/main.c98b69f4.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3505e3a5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3505e3a5.js.map",
+    "static/js/2.7288cead.chunk.js": "/static/js/2.7288cead.chunk.js",
+    "static/js/2.7288cead.chunk.js.map": "/static/js/2.7288cead.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.ea5753bc.chunk.css.map": "/static/css/main.ea5753bc.chunk.css.map",
+    "static/js/2.7288cead.chunk.js.LICENSE.txt": "/static/js/2.7288cead.chunk.js.LICENSE.txt",
+    "static/media/bnb.92643887.png": "/static/media/bnb.92643887.png",
+    "static/media/eth.0f54f490.png": "/static/media/eth.0f54f490.png",
+    "static/media/logo.e9011aaf.svg": "/static/media/logo.e9011aaf.svg",
+    "static/media/matic.a2282492.png": "/static/media/matic.a2282492.png",
+    "static/media/pls.cd143d27.png": "/static/media/pls.cd143d27.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.25681bb2.js",
-    "static/js/2.2efd9baa.chunk.js",
-    "static/css/main.816f4e71.chunk.css",
-    "static/js/main.a2762f3e.chunk.js"
+    "static/js/runtime-main.3505e3a5.js",
+    "static/js/2.7288cead.chunk.js",
+    "static/css/main.ea5753bc.chunk.css",
+    "static/js/main.c98b69f4.chunk.js"
   ]
 }
