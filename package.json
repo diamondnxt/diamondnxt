@@ -1,7 +1,7 @@
 {
   "name": "diamondnxt-dapp",
   "version": "0.1.0",
-  "homepage": "https://diamondnxt.github.io/diamondnxt/",
+  "homepage": "https://dnxt.app/",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.4.1",
@@ -29,8 +29,8 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start ",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "npm run build && node --max_old_space_size=2560 server/server.js"

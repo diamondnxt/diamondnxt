@@ -3,6 +3,7 @@ import ImageUploading from "react-images-uploading";
 
 const ImageUploader = () => {
   const [images, setImages] = useState([]);
+  const [showAmplifiedImage, setShowAmplifiedImage] = useState(false);
   const maxNumber = 1;
 
   const onChange = (imageList) => {
@@ -61,10 +62,21 @@ const ImageUploader = () => {
     maxWidth: "100%",
     objectFit: "contain",
     borderRadius: "5px",
+    cursor: "pointer",
   };
 
   const handleUpdate = () => {
     setImages([]);
+  };
+
+  const handleImageClick = () => {
+    if (images.length > 0) {
+      setShowAmplifiedImage(true);
+    }
+  };
+
+  const handleAmplifiedImageClick = () => {
+    setShowAmplifiedImage(false);
   };
 
   return (
@@ -75,33 +87,51 @@ const ImageUploader = () => {
         maxNumber={maxNumber}
         dataURLKey="data_url"
       >
-        {({ imageList, onImageUpload, onImageRemove, isDragging, dragProps }) => (
-          <div
-            className="upload__image-wrapper"
-            style={dropAreaStyle}
-            onClick={onImageUpload}
-            {...dragProps}
-          >
-            {imageList.length > 0 ? (
-              <>
-                <img
-                  src={imageList[0]["data_url"]}
-                  alt="image"
-                  style={imageStyle}
-                />
-                <button onClick={handleUpdate}>Update</button>
-              </>
-            ) : (
-              <>
-                <div className="icon">
-                  <i className="fas fa-cloud-upload-alt"></i>
+        {({ imageList, onImageUpload, isDragging, dragProps }) => (
+          <>
+            <div
+              className="upload__image-wrapper"
+              style={dropAreaStyle}
+              onClick={handleImageClick}
+              {...dragProps}
+            >
+              {imageList.length > 0 ? (
+                <>
+                  <img
+                    src={imageList[0]["data_url"]}
+                    alt="image"
+                    style={imageStyle}
+                  />
+                  <button onClick={handleUpdate}>Update</button>
+                </>
+              ) : (
+                <>
+                  <div className="icon">
+                    <i className="fas fa-cloud-upload-alt"></i>
+                  </div>
+                  <h6 style={textStyle}>Drag & Drop File Here</h6>
+                  <span style={spanStyle}>OR</span>
+                  <button style={buttonStyle} onClick={onImageUpload}>
+                    Browse File
+                  </button>
+                </>
+              )}
+            </div>
+            {showAmplifiedImage && (
+              <div
+                className="amplified-image-overlay"
+                onClick={handleAmplifiedImageClick}
+              >
+                <div className="amplified-image-container">
+                  <img
+                    src={imageList[0]["data_url"]}
+                    alt="image"
+                    style={imageStyle}
+                  />
                 </div>
-                <h6 style={textStyle}>Drag & Drop File Here</h6>
-                <span style={spanStyle}>OR</span>
-                <button style={buttonStyle}>Browse File</button>
-              </>
+              </div>
             )}
-          </div>
+          </>
         )}
       </ImageUploading>
     </div>

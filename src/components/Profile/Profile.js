@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import Logo from "./../../images/logo.svg";
-import Deposit from "./../Deposit/index"
 import "./../../style/app.css"
 
 //

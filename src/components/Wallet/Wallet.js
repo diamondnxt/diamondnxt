@@ -7,7 +7,7 @@ import networks from "../Network/Networks";
 export default function Wallet() {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([])
-  const [myWeb3, setMyWeb3] = useState()
+  const [web3, setMyWeb3] = useState()
   const [token, setToken] = useState()
   const [etherBalance, setEtherBalance] = useState()
   const [connected, setConnected] = useState(false)
@@ -97,6 +97,6 @@ export default function Wallet() {
   return {
     loading,
     getWeb3,
-    tokens, myWeb3, token, networks, connected, networkId, selectedAddress, selectedNetwork, setSelectedNetwork, getBalances, loading, connectWallet, etherBalance
+    tokens, web3, token, networks, connected, networkId, selectedAddress, selectedNetwork, setSelectedNetwork, getBalances, loading, connectWallet, etherBalance
   }
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import Footer from "../Footer/Footer";
-import Deposit from "./../Deposit/index"
+import Mint from "../Mint/Mint";
 //
 const Dapp = (props) => {
   return (
     <>
-      <Deposit {...props} />
+      <Mint {...props} />
       <Footer />
     </>
   );

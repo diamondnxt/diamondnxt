@@ -18,40 +18,6 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {    /
     let { id } = useParams();
     let { forSale } = true;
 
-    const contribute = async () => {
-        if (!connected) {
-            console.log("return");
-            return;
-        }
-
-        web3.eth.getBalance(selectedAddress).then((value) => {
-            console.log("balance: " + value)
-        })
-        web3.eth.sendTransaction({
-            from: selectedAddress,
-            to: addresses.dev,
-            value: '1000000000000000000'
-        })
-            .on('transactionHash', function (hash) {
-
-            })
-    }
-
-    const trade = () => {
-        return (
-            (connected ? (
-                window.ethereum.chainId == "0x89" ? (
-                    forSale ? (<div>
-                        <button style={"disabled"} className="menuButton" onClick={() => contribute()}>Buy</button>
-                    </div>) : (
-                        <button disabled className="menuButton" onClick={() => contribute()}>Buy</button>
-                    )
-
-                ) : (<button className="menuButton" onClick={() => switchToCustomNet()}>Switch to Polygon</button>)
-            ) : (<button className="menuButton" onClick={() => connectWallet()}>Buy</button>)
-            )
-        )
-    }
 
     const attributesbox = () => {
         let nftdata = require("../json/"+id+".json")
@@ -67,27 +33,6 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {    /
         </div>)
     }
 
-
-
-    const transferToDapp = () => {
-
-        if (!connected) {
-            console.log("return");
-            return;
-        }
-
-        deposit(web3.utils.toWei(1, 'ether'));
-
-        async function deposit(amount) {
-
-            var token = new web3.eth.Contract(ABIS.ABIERC20, addresses.wbnb);
-            await token.methods.transfer(addresses.dev, amount).send({
-                from: selectedAddress,
-            }).on('receipt', function (receipt) {
-                console.log(receipt);
-            });
-        }
-    }
 
 
     const switchToCustomNet = () => {
