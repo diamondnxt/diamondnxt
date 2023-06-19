@@ -260,6 +260,34 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
               </Transition>
             </Listbox>
           </div>
+          <div className="listbox-container">
+            <label className="label">Polish:</label>
+            <Listbox value={selectedPolish} onChange={setSelectedPolish}>
+              <Listbox.Button className={selectedPolish ? 'custom-active' : 'custom-inactive'}>
+                {selectedPolish || "Select a Polish"}
+              </Listbox.Button>
+              <Transition
+                as={React.Fragment}
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <Listbox.Options className="listbox-options">
+                  {polishes.map((polish, polishIdx) => (
+                    <Listbox.Option
+                      key={polishIdx}
+                      className={({ active }) =>
+                        `${active ? 'listbox-option listbox-option-active' : 'listbox-option'}`
+                      }
+                      value={polish}
+                    >
+                      {polish}
+                    </Listbox.Option>
+                  ))}
+                </Listbox.Options>
+              </Transition>
+            </Listbox>
+          </div>
 
           <div className="listbox-container">
             <label className="label">Symmetry:</label>
@@ -312,35 +340,6 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
                       value={fluorescence}
                     >
                       {fluorescence}
-                    </Listbox.Option>
-                  ))}
-                </Listbox.Options>
-              </Transition>
-            </Listbox>
-          </div>
-
-          <div className="listbox-container">
-            <label className="label">Polish:</label>
-            <Listbox value={selectedPolish} onChange={setSelectedPolish}>
-              <Listbox.Button className={selectedPolish ? 'custom-active' : 'custom-inactive'}>
-                {selectedPolish || "Select a Polish"}
-              </Listbox.Button>
-              <Transition
-                as={React.Fragment}
-                leave="transition ease-in duration-100"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-              >
-                <Listbox.Options className="listbox-options">
-                  {polishes.map((polish, polishIdx) => (
-                    <Listbox.Option
-                      key={polishIdx}
-                      className={({ active }) =>
-                        `${active ? 'listbox-option listbox-option-active' : 'listbox-option'}`
-                      }
-                      value={polish}
-                    >
-                      {polish}
                     </Listbox.Option>
                   ))}
                 </Listbox.Options>
