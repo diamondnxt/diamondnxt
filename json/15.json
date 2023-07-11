@@ -1,7 +1,8 @@
 {
-  "name": "Diamond NFT #15",
-  "description": "Diamond NFTs by DNXT",
-  "image": "https://dnxt.app/images/15.png",
+  "name": "Vitale 1913 #15",
+  "description": "Heritage Collection: Combining tradition with technology",
+  "image": "https://dnxt.app/images/15.jpg",
+  "animation_url": "https://dnxt.app/videos/15.mp4",
   "edition": 15,
   "attributes": [
     {
@@ -10,23 +11,23 @@
     },
     {
       "trait_type": "Clarity",
-      "value": "SI2"
+      "value": "VS2"
     },
     {
       "trait_type": "Color",
-      "value": "E"
+      "value": "Fancy Deep Blue"
     },
     {
       "trait_type": "Carat Weight",
-      "value": "2.05"
+      "value": 1.04
     },
     {
       "trait_type": "Shape",
-      "value": "Cushion"
+      "value": "Oval Modified Brilliant"
     },
     {
       "trait_type": "Symmetry",
-      "value": "Poor"
+      "value": "Good"
     },
     {
       "trait_type": "Fluorescence",
@@ -34,16 +35,15 @@
     },
     {
       "trait_type": "Polish",
-      "value": "Poor"
+      "value": "Very Good"
     },
     {
-      "trait_type": "Lab",
-      "value": "Other"
+      "trait_type": "Certificate Issuer",
+      "value": "GIA"
     },
     {
-      "trait_type": "Certificate",
-      "value": "z6liyp"
+      "trait_type": "Certificate Number",
+      "value": "14807324"
     }
-  ],
-  "compiler": "HashLips Art Engine"
+  ]
 }
