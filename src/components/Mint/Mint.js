@@ -41,6 +41,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
   };
 
   const confirmMint = () => {
+    fetchJson()
     const parameters = [
       selectedLab,
       certificateNumber,
@@ -126,6 +127,20 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
       connectWallet: connectWallet,
     });
   };
+
+
+
+  function fetchJson() {
+    fetch('https://raw.githubusercontent.com/diamondnxt/diamondnxt/gh-pages/json/3.json')
+      .then(response => response.json())
+      .then(data => {
+          console.log(data.attributes);
+          // Do something with your data
+      })
+      .catch(error => console.error('Error fetching the file:', error));
+  }
+  
+
 
   return (
     connected ? (

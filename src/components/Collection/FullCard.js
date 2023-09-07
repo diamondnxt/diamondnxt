@@ -4,13 +4,15 @@ import Attributes from "./Attributes";
 
 const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
     let { id } = useParams();
+    const buyLink = `https://vitale.dnxt.app/token/POLYGON:0x97b984b5751009def5f50fdc51477e3821b53050:${id}`;
+
 
     const attributesbox = () => {
         let nftdata = require("../json/" + id + ".json");
 
         return (
             <div>
-                <h3 className="title">Attributes</h3>
+                <h3>Attributes</h3>
                 {nftdata.attributes.map((value, index) => {
                     return <Attributes data={value} key={index}></Attributes>;
                 })}
@@ -40,7 +42,16 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
                     <h1 className="title"><span>Diamond #{id}</span></h1>
                     {attributesbox()}
                 </div>
-                <br /><br /><br /><br /><br /><br />
+                <br />
+                <a
+                    href={buyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="menuItem"
+                >
+                    BUY
+                </a>
+                <br />
                 <Link className="menuItem" to="/explorer">EXPLORE</Link>
             </div>
         </>

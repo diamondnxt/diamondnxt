@@ -47,11 +47,11 @@ header {
   display: block;
   padding: 8px 32px;
   text-decoration: none;
-  background-color: var(--color-8);
+  background-color: var(--color-7);
 }
 
 .menuItem:hover {
-  background-color: #616161;
+  background-color: var(--color-6);
   border-radius: 8px;
   color: #ffffff;
   
