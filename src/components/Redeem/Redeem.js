@@ -13,6 +13,7 @@ const Redeem = ({
   const [nftBalances, setNftBalances] = useState([]);
   const [selectedDiamonds, setSelectedDiamonds] = useState([]);
   const [showModal, setShowModal] = useState(false); // State for displaying the modal
+  const [isLoading, setIsLoading] = useState(true);
 
 
 
@@ -45,11 +46,14 @@ const Redeem = ({
       setSelectedDiamonds([...selectedDiamonds, tokenId]);
     }
   };
-  
+
+
   // Fetch NFT balances
   useEffect(() => {
     if (connected) {
+    
       const getNftBalances = async () => {
+        setIsLoading(true);
         const dnftContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
         const totalNftBalance = await dnftContract.methods.balanceOf(selectedAddress).call();
         const nftBalances = [];
@@ -67,6 +71,7 @@ const Redeem = ({
         }
 
         setNftBalances(nftBalances);
+        setIsLoading(false);
       };
 
       getNftBalances();
@@ -76,36 +81,41 @@ const Redeem = ({
   const redeemSelectedDiamonds = async () => {
     console.log("Redeeming diamonds: "+selectedDiamonds)
   };
+  
 
   return (
     connected ? (
       window.ethereum.chainId === "0x89" ? (
         <div className="redeem-container">
           <h2 className="section-title">Redeem Your NFTs</h2>
-          {nftBalances.length > 0 ? (
-      <div className="nft-list">
-        {nftBalances.map((nft, index) => (
-      <div key={index} className="nft-item">
-      <input
-        type="checkbox"
-        onChange={() => handleCheckboxChange(nft.tokenId)}
-        checked={selectedDiamonds.includes(nft.tokenId)}
-      />
-            <a
-              href={`https://dnxt.app/#/explorer/${nft.tokenId}`} // Replace with the actual explorer URL
-              target="_blank" // Open the link in a new tab/window
-              rel="noopener noreferrer" // Recommended for security reasons
-            >
-              <label className="subtitle">Diamond ID: {nft.tokenId}</label>
-              <img src={nft.imageUrl} alt={`Diamond #${nft.tokenId}`} />
-            </a>
-            {/* Add more NFT details */}
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p>No NFTs to redeem.</p>
-    )}
+          {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          nftBalances.length > 0 ? (
+            <div className="nft-list">
+              {nftBalances.map((nft, index) => (
+                <div key={index} className="nft-item">
+                  <input
+                    type="checkbox"
+                    onChange={() => handleCheckboxChange(nft.tokenId)}
+                    checked={selectedDiamonds.includes(nft.tokenId)}
+                  />
+                  <a
+                    href={`https://dnxt.app/#/explorer/${nft.tokenId}`} // Replace with the actual explorer URL
+                    target="_blank" // Open the link in a new tab/window
+                    rel="noopener noreferrer" // Recommended for security reasons
+                  >
+                    <label className="subtitle">Diamond ID: {nft.tokenId}</label>
+                    <img src={nft.imageUrl} alt={`Diamond #${nft.tokenId}`} />
+                  </a>
+                  {/* Add more NFT details */}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No NFTs to redeem.</p>
+          )
+        )}
 
 
 <button
