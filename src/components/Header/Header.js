@@ -34,6 +34,7 @@ const Header = (props) => {
                 <Link className="menuItem" to="/explorer">Explorer</Link>
                 <Link className="menuItem" to="/profile">Profile</Link>
                 <Link className="menuItem" to="/dapp">Dapp</Link>
+                <Link className="menuItem" to="/redeem">Redeem</Link>
                 <a className="menuItem" href="https://github.com/diamondnxt" target="_blank" rel="noopener noreferrer">Docs</a>
               </>
             )}
@@ -43,6 +44,7 @@ const Header = (props) => {
             <Link className="menuItem" to="/explorer">Explorer</Link>
             <Link className="menuItem" to="/profile">Profile</Link>
             <Link className="menuItem" to="/dapp">Dapp</Link>
+            <Link className="menuItem" to="/redeem">Redeem</Link>
             <a className="menuItem" href="https://github.com/diamondnxt" target="_blank" rel="noopener noreferrer">Docs</a>
           </>
         )}

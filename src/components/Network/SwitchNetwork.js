@@ -1,5 +1,8 @@
+import { networks } from "./../Network/Networks.js";
+
 export const SwitchNetwork = ({ connected, params, connectWallet }) => {
   console.log(connected)
+  //console.log(params)
 
   if (connected) {
     _SwitchNetwork({ params })
@@ -38,3 +41,16 @@ async function _SwitchNetwork( params ) {
   }
 
 }
+
+export const SwitchToPolygon = ({ connected, connectWallet }) => {
+  const paramsPolygon = networks[1].params;
+  return (
+    <button className="menuItem" onClick={() =>       SwitchNetwork({
+      connected,
+      params: paramsPolygon,
+      connectWallet: connectWallet,
+    })}>
+      Switch to Polygon
+    </button>
+  );
+};

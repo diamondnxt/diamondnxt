@@ -7,6 +7,7 @@ import Explorer from "./components/Collection/Explorer.js";
 import "./style/app.css";
 import Home from "./components/Home/Home.js";
 import Profile from "./components/Profile/Profile.js";
+import Redeem from "./components/Redeem/Redeem.js";
 import FullCard from "./components/Collection/FullCard.js";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/explorer" element={<Explorer />} />
                 <Route path="/dapp" element={<Dapp {...walletProps} />} />
                 <Route path="/profile" element={<Profile {...walletProps} />} />
+                <Route path="/redeem" element={<Redeem {...walletProps} />} />
                 <Route path="/" element={<Home />} />
             </Routes>
         </Router>

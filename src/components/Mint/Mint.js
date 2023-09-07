@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import * as ABIS from "./../../constants/ABIS";
 import * as addresses from "./../../constants/addresses";
-import { networks } from "./../Network/Networks.js";
-import { SwitchNetwork } from "../Network/SwitchNetwork.js";
+import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
 import { Listbox, Transition } from '@headlessui/react';
 import ImageUploader from "../ImageUploader/ImageUploader";
 import "./mint.css"
@@ -119,14 +118,6 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
   }
 
 
-
-  const switchToCustomNet = () => {
-    SwitchNetwork({
-      connected: connected,
-      params: networks[2].params,
-      connectWallet: connectWallet,
-    });
-  };
 
 
 
@@ -426,7 +417,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
           )}
 
         </div>
-      ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="menuItem" onClick={() => switchToCustomNet()}>Switch to Polygon</button></>)
+      ) : (<><br></br><br></br><br></br><br></br><br></br><SwitchToPolygon connectWallet={connectWallet} connected={connected} /></>)
     ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="menuItem" onClick={() => connectWallet()}>Connect</button></>)
   );
 };

@@ -1,0 +1,67 @@
+/* Redeem.css */
+
+.redeem-container {
+    padding: 16px;
+    background-color: var(--color-8);
+    border-radius: 15px;
+    max-width: 512px;
+    margin: 64px auto; /* Center the card horizontally and add margin on top */
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .centered-content {
+    text-align: center;
+  }
+  
+  .section-title {
+    color: var(--color-7);
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .section-description {
+    color: var(--white);
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .balance-info {
+    color: var(--white);
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  
+  .balance-info p {
+    color: var(--color-7);
+    font-weight: 400;
+    font-size: 16px;
+  }
+  
+  .redeem-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 16px;
+  }
+  
+  .redeem-button:disabled,
+  .redeem-button[disabled] {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .redeem-button:hover {
+    background-color: #0056b3;
+  }
+  

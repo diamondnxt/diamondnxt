@@ -16,6 +16,7 @@ export const Menu = () => {
           <Link className="menuItem" to="/explorer">Explorer</Link>
           <Link className="menuItem" to="/profile">Profile</Link>
           <Link className="menuItem" to="/dapp">Dapp</Link>
+          <Link className="menuItem" to="/redeem">Redeem</Link>
           <a className="menuItem" href="https://diamondnxt.com/" target="_blank" rel="noopener noreferrer">Docs</a>
         </div>
       )}

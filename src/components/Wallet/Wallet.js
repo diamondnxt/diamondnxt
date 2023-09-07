@@ -13,7 +13,6 @@ export default function Wallet() {
   const [etherBalance, setEtherBalance] = useState()
   const [connected, setConnected] = useState(false)
   const [selectedAddress, setSelectedAddress] = useState()
-  const [selectedNetwork, setSelectedNetwork] = useState(null);
   const [networkId, setNetworkId] = useState(null);
 
   useEffect(() => {
@@ -31,7 +30,10 @@ export default function Wallet() {
       web3.eth.getAccounts().then((result) => {
         setSelectedAddress(result[0])
         getBalances(web3, result[0])
-        getTokenBalance(web3, result[0])
+        if (web3.currentProvider.chainId === "0x89") {
+          getTokenBalance(web3, result[0])
+        }
+
       })
       setNetworkId(window.ethereum.chainId);
     })
@@ -105,6 +107,6 @@ export default function Wallet() {
   return {
     loading,
     getWeb3,
-    tokens, web3, networks, connected, networkId, selectedAddress, selectedNetwork, setSelectedNetwork, getBalances, connectWallet, etherBalance
+    tokens, web3, networks, connected, networkId, selectedAddress, getBalances, connectWallet, etherBalance
   }
 }

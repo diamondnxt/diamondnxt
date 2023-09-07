@@ -82,9 +82,9 @@ const UserInfo = (props) => {
                     </b>
                     </div>
                   </div>
-                  <div className="logoeth">{logoeth()}</div>
                 </div>
                 <NetworkSelect {...props} selectedNetwork={selectedNetwork} />
+                <div className="logoeth">{logoeth()}</div>
 
               </div>
             )}
