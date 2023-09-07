@@ -25,15 +25,16 @@ const Redeem = ({
     return (
       <div>
         {/* Iterate over selectedDiamonds and display information */}
-        {selectedDiamonds.map((diamond, index) => (
-          <div key={index}>
-            <p>Diamond {index + 1} Details:</p>
+        {selectedDiamonds.map((diamond) => (
+          <div key={diamond}>
+            <p>Diamond ID: {diamond} Details:</p>
             {/* Display diamond details here */}
           </div>
         ))}
       </div>
     );
   };
+  
 
   const handleCheckboxChange = (tokenId) => {
     if (selectedDiamonds.includes(tokenId)) {
