@@ -39,7 +39,7 @@ button[disabled]{
 
 .card {
   padding: 16px;
-  background-color: var(--card-bg);
+  background-color: var(--color-8);
 
   border-radius: 15px;
 
