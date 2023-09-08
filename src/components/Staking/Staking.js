@@ -47,11 +47,11 @@ const Staking = () => {
       <p>DNXT Balance: {userDNXTBalance} DNXT</p>
       <p>DNXT Staked: {userDNXTStaked} DNXT</p>
       <p>DNXT Staked Averaged: {userDNXTStakedAverage} DNXT</p>
-        <button className="stake-button">Stake</button>
-        <button className="stake-button">Unstake</button>
-      </div>
       <div className="staking-discount">
       <p>Your Fee: {calculateTotalFee(discountLevels[userSelectedLevel - 1].discount)}% ({`-${parseFloat(discountLevels[userSelectedLevel - 1].discount) * 10}%`})</p>
+      </div>
+        <button className="stake-button">Stake</button>
+        <button className="stake-button">Unstake</button>
       </div>
     </div>
   );
