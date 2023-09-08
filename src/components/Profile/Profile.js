@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
+import KYC from "../KYC/KYC.js"
 import "./Profile.css";
 import * as ABIS from "../../constants/ABIS";
 import * as addresses from "../../constants/addresses";
@@ -13,6 +14,38 @@ const Profile = ({
   tokens,
 }) => {
   const [nftBalances, setNftBalances] = useState([]);
+  const [isWhitelisted, setIsWhitelisted] = useState(false);
+  const [isBlacklisted, setIsBlacklisted] = useState(false);
+  const [isKycStarted, setIsKycStarted] = useState(false); // Track if KYC process has started
+
+  const closeKYCModal = () => {
+    setIsKycStarted(false);
+  };
+
+  const startKYC = async () => {
+    console.log("Starting KYC: ")
+  };
+
+  useEffect(() => {
+    if (connected) {
+      const checkWhitelistedStatus = async () => {
+        const whitelistContract = new web3.eth.Contract(ABIS.ABIWHITELIST, addresses.whitelist);
+        const isWhitelisted = await whitelistContract.methods.whitelisted(selectedAddress).call();
+        setIsWhitelisted(isWhitelisted);
+      };
+  
+      const checkBlacklistedStatus = async () => {
+        const whitelistContract = new web3.eth.Contract(ABIS.ABIWHITELIST, addresses.whitelist);
+        const isBlacklisted = await whitelistContract.methods.blacklisted(selectedAddress).call();
+        setIsBlacklisted(isBlacklisted);
+      };
+  
+      // Call the functions to check whitelist and blacklist status
+      checkWhitelistedStatus();
+      checkBlacklistedStatus();
+    }
+  }, [connected, selectedAddress, web3]);
+  
 
   // Fetch NFT balances
   useEffect(() => {
@@ -36,7 +69,6 @@ const Profile = ({
 
         setNftBalances(nftBalances);
       };
-
       getNftBalances();
     }
   }, [connected, selectedAddress, web3]);
@@ -47,6 +79,26 @@ const Profile = ({
       window.ethereum.chainId === "0x89" ? (
       <div>
         <div className="profile-container">
+        <div className="profile-box">
+      <h2 className="section-title">Your Profile</h2>
+      <p className="subtitle">Address: {selectedAddress}</p>
+
+      {/* Whitelist and Blacklist Status */}
+      {isWhitelisted ? (
+        <p>Status: Whitelisted</p>
+      ) : isBlacklisted ? (
+        <p>Status: Blacklisted</p>
+      ) : (
+        <button className="menuItem" onClick={() => setIsKycStarted(true)}>Start KYC Process</button>
+      )}
+
+{isKycStarted ? (
+  // Render KYC form or other KYC-related content here
+  // Example: <KYCForm />
+  <KYC isKycStarted={isKycStarted} startKYC={startKYC} closeKYCModal={closeKYCModal} />
+) : null}
+
+    </div>
           {/* Balances Section */}
           <div className="profile-box">
             <h2 className="section-title">Balances</h2>

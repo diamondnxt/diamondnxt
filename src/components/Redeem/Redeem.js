@@ -119,7 +119,7 @@ const Redeem = ({
 
 
 <button
-  className="redeem-button"
+  className="menuItem"
   onClick={() => setShowModal(true)}
 >
   Redeem Selected
@@ -131,10 +131,10 @@ const Redeem = ({
                 <h2>Confirm Redeem</h2>
                 {renderDiamondsToRedeem()}
                 {/* Additional information can be displayed here */}
-                <button className="redeem-button" onClick={redeemSelectedDiamonds}>
+                <button className="menuItem" onClick={redeemSelectedDiamonds}>
                   Confirm
                 </button>
-                <button className="redeem-button" onClick={closeModal}>
+                <button className="menuItem" onClick={closeModal}>
                   Cancel
                 </button>
               </div>
