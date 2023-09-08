@@ -17,6 +17,7 @@ export const Menu = () => {
           <Link className="menuItem" to="/profile">Profile</Link>
           <Link className="menuItem" to="/dapp">Dapp</Link>
           <Link className="menuItem" to="/redeem">Redeem</Link>
+          <Link className="menuItem" to="/staking">Staking</Link>
           <a className="menuItem" href="https://diamondnxt.com/" target="_blank" rel="noopener noreferrer">Docs</a>
         </div>
       )}

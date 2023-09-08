@@ -1,0 +1,106 @@
+/* Staking.css */
+.staking-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the boxes horizontally */
+    align-items: center; /* Center the boxes vertically */
+    margin-top: 128px;
+  }
+  
+  .staking-levels {
+    display: flex;
+    flex-direction: column; /* Display levels in a column */
+    align-items: center;
+    margin: 16px; /* Add margin on all sides to separate the boxes */
+  }
+  
+  .staking-level {
+    padding: 16px;
+    background-color: var(--color-8);
+    border-radius: 15px;
+    width: 300px;
+    margin: 16px; /* Add margin between levels */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically within the box */
+    align-items: center; /* Center the content horizontally within the box */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .selected {
+    background-color: var(--color-7); /* Change background color for the selected level */
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.4), 0 6px 20px 0 rgba(255, 255, 255, 0.3); /* Updated box-shadow */
+  }
+  
+  
+  .level-info {
+    text-align: center;
+  }
+  
+  .level-name {
+    color: var(--color-6);
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .level-discount {
+    color: var(--white);
+    font-weight: 300;
+    font-size: 16px;
+  }
+  
+  .level-fee {
+    color: var(--white);
+    font-weight: 300;
+    font-size: 16px;
+  }
+  
+  .staking-balance {
+    padding: 16px;
+    background-color: var(--color-8);
+    border-radius: 15px;
+    width: 300px;
+    color: var(--color-5);
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .stake-button {
+    border-radius: 13px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    padding: 8px 32px;
+    text-decoration: none;
+    background-color: var(--color-7);
+  }
+  
+  .stake-button:hover {
+    background-color: var(--color-6);
+    border-radius: 8px;
+    color: #ffffff;
+    
+  }
+  
+  .staking-discount {
+    padding: 16px;
+    background-color: var(--color-8);
+    border-radius: 15px;
+    color: var(--color-5);
+    width: 300px;
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  /* Add more styles as needed */
+  

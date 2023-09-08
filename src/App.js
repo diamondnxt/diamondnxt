@@ -8,6 +8,7 @@ import "./style/app.css";
 import Home from "./components/Home/Home.js";
 import Profile from "./components/Profile/Profile.js";
 import Redeem from "./components/Redeem/Redeem.js";
+import Staking from "./components/Staking/Staking.js";
 import FullCard from "./components/Collection/FullCard.js";
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/dapp" element={<Dapp {...walletProps} />} />
                 <Route path="/profile" element={<Profile {...walletProps} />} />
                 <Route path="/redeem" element={<Redeem {...walletProps} />} />
+                <Route path="/staking" element={<Staking {...walletProps} />} />
                 <Route path="/" element={<Home />} />
             </Routes>
         </Router>
