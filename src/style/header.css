@@ -282,8 +282,14 @@ header {
 
 .user-address-value {
   padding: 6px 16px;
+  color: var(--color-6)
 
 }
+
+ a:visited { 
+  text-decoration: none; 
+  color: var(--color-6); 
+ }
 
 @media (max-width: 768px) {
   #userInfo .user-address-value, .user-address-label {
