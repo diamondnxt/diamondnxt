@@ -109,6 +109,25 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
     }
   };
 
+  const stakeOrApprove = async () => {
+    if (!connected) {
+      console.log("Not connected");
+      return;
+    }
+  
+    if (!inputAmount || parseFloat(inputAmount) <= 0) {
+      console.log("Invalid stake amount");
+      return;
+    }  
+    if (parseFloat(allowanceAmount) >= parseFloat(inputAmount)) {
+      // If allowance is sufficient, directly stake
+      stake();
+    } else {
+      // If allowance is not enough, approve the contract
+      approve();
+    }
+  };
+
   const unstake = () => {
     if (!connected) {
       console.log("Not connected");
@@ -209,7 +228,7 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
   </div>
         {connected ? (
           selectedTab === "STAKE" ? (
-            <button className="stake-button" onClick={() => stake()}>Stake</button>
+            <button className="stake-button" onClick={() => stakeOrApprove()}>Stake</button>
           ) : (
           <button className="stake-button" onClick={() => unstake()}>Unstake</button>
           ) 
