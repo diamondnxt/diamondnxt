@@ -8,7 +8,7 @@ import { ABIDNXT } from "../../constants/ABIS";
 
 export default function Wallet() {
   const [loading, setLoading] = useState(false);
-  const [tokens, setTokens] = useState([])
+  const [dnxtBalance, setTokens] = useState([])
   const [web3, setMyWeb3] = useState()
   const [etherBalance, setEtherBalance] = useState()
   const [connected, setConnected] = useState(false)
@@ -107,6 +107,6 @@ export default function Wallet() {
   return {
     loading,
     getWeb3,
-    tokens, web3, networks, connected, networkId, selectedAddress, getBalances, connectWallet, etherBalance
+    dnxtBalance, web3, networks, connected, networkId, selectedAddress, getBalances, connectWallet, etherBalance
   }
 }

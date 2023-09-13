@@ -78,7 +78,7 @@ const UserInfo = (props) => {
                     </div>
                     <div>
                     <b>
-                      {props.tokens > 0 ? parseFloat(props.tokens).toFixed(3) : 0} <span>DNXT</span>
+                      {props.dnxtBalance > 0 ? parseFloat(props.dnxtBalance).toFixed(3) : 0} <span>DNXT</span>
                     </b>
                     </div>
                   </div>

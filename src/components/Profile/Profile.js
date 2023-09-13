@@ -11,7 +11,7 @@ const Profile = ({
   connectWallet,
   selectedAddress,
   etherBalance,
-  tokens,
+  dnxtBalance,
 }) => {
   const [nftBalances, setNftBalances] = useState([]);
   const [isWhitelisted, setIsWhitelisted] = useState(false);
@@ -115,7 +115,7 @@ const Profile = ({
               <div className="title">DNXT Balance:</div>
               <div className="subtitle">
                 <b>
-                  {tokens > 0 ? parseFloat(tokens).toFixed(3) : 0}{" "}
+                  {dnxtBalance > 0 ? parseFloat(dnxtBalance).toFixed(3) : 0}{" "}
                   <span>DNXT</span>
                 </b>
               </div>

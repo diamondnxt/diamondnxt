@@ -1,20 +1,148 @@
-import React from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import * as ABIS from "./../../constants/ABIS";
+import * as addresses from "./../../constants/addresses";
 import "./Staking.css"; // Import your CSS file
 
-const Staking = () => {
+const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance }) => {
+
+  const [inputAmount, setInputAmount] = useState();
+  const [stakeAmount, setStakeAmount] = useState();
+  const [allowanceAmount, setAllowanceAmount] = useState();
+  const [activeLevel, setActiveLevel] = useState(0);
+  const [selectedTab, setSelectedTab] = useState("STAKE");
+
+
   // Define your discount levels here
-  const discountLevels = [
+  const discountLevels = useMemo(() => [
+    { level: 0, amount: 0, discount: "0%" },
     { level: 1, amount: 100, discount: "0.3%" },
     { level: 2, amount: 1000, discount: "1%" },
     { level: 3, amount: 10000, discount: "2%" },
     { level: 4, amount: 100000, discount: "4%" },
     { level: 5, amount: 1000000, discount: "6%" },
-  ];
+  ], []);
 
-  const userDNXTBalance = 100000; // Replace with the user's DNXT balance
-  const userDNXTStaked = 10000; // Replace with the user's DNXT balance
-  const userDNXTStakedAverage = 8500; // Replace with the user's DNXT balance
-  const userSelectedLevel = 3; // Replace with the user's selected level
+
+  const updateActiveLevel = useCallback(() => {
+    // Iterate through discountLevels array from highest level to lowest
+    for (let i = discountLevels.length - 1; i >= 0; i--) {
+      const levelData = discountLevels[i];
+
+      // Check if the user's DNXT balance exceeds the current level's amount
+      if (stakeAmount >= levelData.amount) {
+        setActiveLevel(levelData.level);
+        break; // Exit the loop once the highest level is found
+      }
+    }
+  }, [discountLevels, stakeAmount]);
+
+
+  useEffect(() => {
+    if (connected) {
+      const checkStake = async () => {
+        const stakingContract = new web3.eth.Contract(ABIS.ABISTAKING, addresses.staking);
+        const stakeAmount = await stakingContract.methods.staked(selectedAddress).call();
+        setStakeAmount(web3.utils.fromWei(stakeAmount, "ether"));
+        updateActiveLevel();
+      };
+
+      const checkAllowance = async () => {
+        const dnxt = new web3.eth.Contract(ABIS.ABIDNXT, addresses.dnxt);
+        const allowance = await dnxt.methods.allowance(selectedAddress, addresses.staking).call();
+        setAllowanceAmount(allowance);
+        console.log("allowance: "+allowance);
+      };
+
+      checkStake();
+      updateActiveLevel();
+      checkAllowance();
+    }
+  }, [connected, selectedAddress, web3, updateActiveLevel]);
+
+  const approve = () => {
+    if (!connected) {
+      console.log("Not connected");
+      return;
+    }
+
+    approveToken();
+
+    async function approveToken() {
+      let staking = new web3.eth.Contract(ABIS.ABIDNXT, addresses.dnxttest);
+      try {
+        await staking.methods.approve(
+          addresses.staking,
+          web3.utils.toWei(inputAmount, 'ether')
+        ).send({
+          from: selectedAddress,
+        }).on('receipt', function (receipt) {
+          console.log(receipt);
+        });
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const stake = () => {
+    if (!connected) {
+      console.log("Not connected");
+      return;
+    }
+
+    stakeToken();
+
+    async function stakeToken() {
+      let staking = new web3.eth.Contract(ABIS.ABISTAKING, addresses.staking);
+      try {
+        await staking.methods.stake(
+          web3.utils.toWei(inputAmount, 'ether')
+        ).send({
+          from: selectedAddress,
+        }).on('receipt', function (receipt) {
+          console.log(receipt);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  const unstake = () => {
+    if (!connected) {
+      console.log("Not connected");
+      return;
+    }
+
+    unstakeToken();
+
+    async function unstakeToken() {
+      let staking = new web3.eth.Contract(ABIS.ABISTAKING, addresses.staking);
+      try {
+        await staking.methods.unstake(
+          web3.utils.toWei(inputAmount, 'ether')
+        ).send({
+          from: selectedAddress,
+        }).on('receipt', function (receipt) {
+          console.log(receipt);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+    // Function to handle the "Max" button click event
+    const handleMaxButtonClick = () => {
+      if (selectedTab === "STAKE") {
+        setInputAmount(dnxtBalance.toString());
+      } else if (selectedTab === "UNSTAKE") {
+        setInputAmount(stakeAmount.toString());
+      }
+    };
+  
+
 
   // Calculate the total fee (fee - discount = 10% - discount)
   const calculateTotalFee = (discount) => {
@@ -22,37 +150,74 @@ const Staking = () => {
     return fee - parseFloat(discount);
   };
 
+  const handleInputAmountChange = (event) => {
+    setInputAmount(event.target.value);
+  };
+
+    // Function to handle tab selection
+    const handleTabSelect = (tab) => {
+      setSelectedTab(tab);
+    };
+
   return (
     <div className="staking-container">
       <div className="staking-levels">
         {/* Render discount levels */}
         {discountLevels.map((levelData) => (
           <div
-            className={`staking-level ${
-              levelData.level === userSelectedLevel ? "selected" : ""
-            }`}
+            className={`staking-level ${levelData.level === activeLevel ? "selected" : ""
+              }`}
             key={levelData.level}
           >
             <div className="level-info">
               <div className="level-name">Level {levelData.level}</div>
-              <div className="level-discount">Discount: {levelData.discount}</div>
               <div className="level-fee">
-                Total Fee: {calculateTotalFee(levelData.discount)}%
+                Fee: {calculateTotalFee(levelData.discount)}% {"(-"}{parseFloat(discountLevels[levelData.level].discount) * 10}{"%)"}
               </div>
             </div>
           </div>
         ))}
       </div>
       <div className="staking-balance">
-      <p>DNXT Balance: {userDNXTBalance} DNXT</p>
-      <p>DNXT Staked: {userDNXTStaked} DNXT</p>
-      <p>DNXT Staked Averaged: {userDNXTStakedAverage} DNXT</p>
-      <div className="staking-discount">
-      <p>Your Fee: {calculateTotalFee(discountLevels[userSelectedLevel - 1].discount)}% ({`-${parseFloat(discountLevels[userSelectedLevel - 1].discount) * 10}%`})</p>
+      <div className="staking-tabs">
+        <button
+          className={`tab-button ${selectedTab === "STAKE" ? "active" : ""}`}
+          onClick={() => handleTabSelect("STAKE")}
+        >
+          STAKE
+        </button>
+        <button
+          className={`tab-button ${selectedTab === "UNSTAKE" ? "active" : ""}`}
+          onClick={() => handleTabSelect("UNSTAKE")}
+        >
+          UNSTAKE
+        </button>
+      </div><div className="level-name">
+        <p>DNXT Balance: {connected ? parseFloat(dnxtBalance).toFixed(2) : '0.00'} DNXT</p>
+        <p>DNXT Staked: {connected ? parseFloat(stakeAmount).toFixed(2) : '0.00'} DNXT</p>
+        </div>
+        <div className="input-container">
+    <input
+      className="stake-input"
+      type="number"
+      value={inputAmount}
+      onChange={handleInputAmountChange}
+    />
+    <button className="max-button" onClick={handleMaxButtonClick}>
+      Max
+    </button>
+  </div>
+        {connected ? (
+          selectedTab === "STAKE" ? (
+            <button className="stake-button" onClick={() => stake()}>Stake</button>
+          ) : (
+          <button className="stake-button" onClick={() => unstake()}>Unstake</button>
+          ) 
+        ) : (
+          <button className="stake-button" onClick={() => connectWallet()}>Connect Wallet</button>
+        )}
       </div>
-        <button className="stake-button">Stake</button>
-        <button className="stake-button">Unstake</button>
-      </div>
+
     </div>
   );
 };
