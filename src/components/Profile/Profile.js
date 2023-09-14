@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
 import KYC from "../KYC/KYC.js"
+import Logo from "./../../images/logo.svg";
 import "./Profile.css";
 import * as ABIS from "../../constants/ABIS";
 import * as addresses from "../../constants/addresses";
@@ -116,19 +117,9 @@ const Profile = ({
               <div className="subtitle">
                 <b>
                   {dnxtBalance > 0 ? parseFloat(dnxtBalance).toFixed(3) : 0}{" "}
-                  <span>DNXT</span>
+                  <span><img src={Logo} height="18px" alt="" /> DNXT</span>
                 </b>
               </div>
-            </div>
-          </div>
-
-          {/* Staking Section */}
-          <div className="profile-box">
-            <h2 className="section-title">Staking</h2>
-            <div className="section-content">
-              {/* Example staking content */}
-              <p>You currently have 0 DNXT staked.</p>
-              <button className="menuItem" onClick={() => connectWallet()}>Stake</button>
             </div>
           </div>
 

@@ -50,7 +50,7 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
         const dnxt = new web3.eth.Contract(ABIS.ABIDNXT, addresses.dnxt);
         const allowance = await dnxt.methods.allowance(selectedAddress, addresses.staking).call();
         setAllowanceAmount(allowance);
-        console.log("allowance: "+allowance);
+        console.log("allowance: " + allowance);
       };
 
       checkStake();
@@ -114,11 +114,11 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
       console.log("Not connected");
       return;
     }
-  
+
     if (!inputAmount || parseFloat(inputAmount) <= 0) {
       console.log("Invalid stake amount");
       return;
-    }  
+    }
     if (parseFloat(allowanceAmount) >= parseFloat(inputAmount)) {
       // If allowance is sufficient, directly stake
       stake();
@@ -152,15 +152,15 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
     }
   };
 
-    // Function to handle the "Max" button click event
-    const handleMaxButtonClick = () => {
-      if (selectedTab === "STAKE") {
-        setInputAmount(dnxtBalance.toString());
-      } else if (selectedTab === "UNSTAKE") {
-        setInputAmount(stakeAmount.toString());
-      }
-    };
-  
+  // Function to handle the "Max" button click event
+  const handleMaxButtonClick = () => {
+    if (selectedTab === "STAKE") {
+      setInputAmount(dnxtBalance.toString());
+    } else if (selectedTab === "UNSTAKE") {
+      setInputAmount(stakeAmount.toString());
+    }
+  };
+
 
 
   // Calculate the total fee (fee - discount = 10% - discount)
@@ -173,13 +173,52 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
     setInputAmount(event.target.value);
   };
 
-    // Function to handle tab selection
-    const handleTabSelect = (tab) => {
-      setSelectedTab(tab);
-    };
+  // Function to handle tab selection
+  const handleTabSelect = (tab) => {
+    setSelectedTab(tab);
+  };
 
   return (
     <div className="staking-container">
+      <div className="staking-balance">
+        <div className="staking-tabs">
+          <button
+            className={`tab-button ${selectedTab === "STAKE" ? "active" : ""}`}
+            onClick={() => handleTabSelect("STAKE")}
+          >
+            STAKE
+          </button>
+          <button
+            className={`tab-button ${selectedTab === "UNSTAKE" ? "active" : ""}`}
+            onClick={() => handleTabSelect("UNSTAKE")}
+          >
+            UNSTAKE
+          </button>
+        </div><div className="level-name">
+          <p>DNXT Balance: {connected ? parseFloat(dnxtBalance).toFixed(2) : '0.00'} DNXT</p>
+          <p>DNXT Staked: {connected ? parseFloat(stakeAmount).toFixed(2) : '0.00'} DNXT</p>
+        </div>
+        <div className="input-container">
+          <input
+            className="stake-input"
+            type="number"
+            value={inputAmount}
+            onChange={handleInputAmountChange}
+          />
+          <button className="max-button" onClick={handleMaxButtonClick}>
+            Max
+          </button>
+        </div>
+        {connected ? (
+          selectedTab === "STAKE" ? (
+            <button className="stake-button" onClick={() => stakeOrApprove()}>Stake</button>
+          ) : (
+            <button className="stake-button" onClick={() => unstake()}>Unstake</button>
+          )
+        ) : (
+          <button className="stake-button" onClick={() => connectWallet()}>Connect Wallet</button>
+        )}
+      </div>
       <div className="staking-levels">
         {/* Render discount levels */}
         {discountLevels.map((levelData) => (
@@ -189,7 +228,7 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
             key={levelData.level}
           >
             <div className="level-info">
-              <div className="level-name">Level {levelData.level}</div>
+              <div className="level-name">Level {levelData.level}: {levelData.amount} DNXT</div>
               <div className="level-fee">
                 Fee: {calculateTotalFee(levelData.discount)}% {"(-"}{parseFloat(discountLevels[levelData.level].discount) * 10}{"%)"}
               </div>
@@ -197,46 +236,6 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
           </div>
         ))}
       </div>
-      <div className="staking-balance">
-      <div className="staking-tabs">
-        <button
-          className={`tab-button ${selectedTab === "STAKE" ? "active" : ""}`}
-          onClick={() => handleTabSelect("STAKE")}
-        >
-          STAKE
-        </button>
-        <button
-          className={`tab-button ${selectedTab === "UNSTAKE" ? "active" : ""}`}
-          onClick={() => handleTabSelect("UNSTAKE")}
-        >
-          UNSTAKE
-        </button>
-      </div><div className="level-name">
-        <p>DNXT Balance: {connected ? parseFloat(dnxtBalance).toFixed(2) : '0.00'} DNXT</p>
-        <p>DNXT Staked: {connected ? parseFloat(stakeAmount).toFixed(2) : '0.00'} DNXT</p>
-        </div>
-        <div className="input-container">
-    <input
-      className="stake-input"
-      type="number"
-      value={inputAmount}
-      onChange={handleInputAmountChange}
-    />
-    <button className="max-button" onClick={handleMaxButtonClick}>
-      Max
-    </button>
-  </div>
-        {connected ? (
-          selectedTab === "STAKE" ? (
-            <button className="stake-button" onClick={() => stakeOrApprove()}>Stake</button>
-          ) : (
-          <button className="stake-button" onClick={() => unstake()}>Unstake</button>
-          ) 
-        ) : (
-          <button className="stake-button" onClick={() => connectWallet()}>Connect Wallet</button>
-        )}
-      </div>
-
     </div>
   );
 };

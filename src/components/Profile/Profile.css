@@ -11,7 +11,6 @@
     padding: 16px;
     background-color: var(--color-8);
     border-radius: 15px;
-    width: 300px;
     margin: 16px; /* Add margin on all sides to separate the boxes */
     display: flex;
     flex-direction: column;
