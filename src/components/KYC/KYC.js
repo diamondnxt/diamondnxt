@@ -3,7 +3,8 @@ import SumsubWebSdk from "@sumsub/websdk-react";
 import axios from 'axios';
 
 const SUMSUB_BASE_URL = 'https://api.sumsub.com';
-const EXPRESS_SERVER_URL = 'server-z1ve.vercel.app'; // Update with your server's URL
+const EXPRESS_SERVER_URL = 'http://servernext.vercel.app'; // Update with your server's URL
+const levelName = 'dnxt';
 
 const KYC = ({
   startKYC,
@@ -45,7 +46,7 @@ console.log("Expiration!")
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-applicant', {
         externalUserId: selectedAddress,
-        levelName: 'dnxt', // Provide the appropriate level name
+        levelName: levelName, // Provide the appropriate level name
       });
       setApplicantId(response.data.id);
       console.log('Applicant created:', response.data);
@@ -59,7 +60,7 @@ console.log("Expiration!")
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-access-token', {
         externalUserId: selectedAddress,
-        levelName: 'dnxt', // Provide the appropriate level name
+        levelName: levelName, // Provide the appropriate level name
       });
       setAccessToken(response.data.token);
       console.log('Access Token:', accessToken);
@@ -73,20 +74,8 @@ console.log("Expiration!")
     startKYC();
     setIsKycConfirmed(true);
     setApplicantId(selectedAddress);
-    createApplicant();
-    createAccessToken();
-
-    
-    
-    
-    // Create an applicant when the user confirms
-  /*  try {
-      const newApplicantId = await createApplicant();
-      setApplicantId(newApplicantId);
-      console.log("New applicant ID: " + newApplicantId);
-    } catch (error) {
-      console.error('Error creating applicant:', error);
-    } */
+    createApplicant()
+    createAccessToken()
   };
 
 
