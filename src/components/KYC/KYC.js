@@ -3,7 +3,7 @@ import SumsubWebSdk from "@sumsub/websdk-react";
 import axios from 'axios';
 
 const SUMSUB_BASE_URL = 'https://api.sumsub.com';
-const EXPRESS_SERVER_URL = 'http://localhost:5000'; // Update with your server's URL
+const EXPRESS_SERVER_URL = 'http://server-z1ve-a3i165gh3-dnxt.vercel.app'; // Update with your server's URL
 
 const KYC = ({
   startKYC,
@@ -40,47 +40,42 @@ console.log("Expiration!")
     // Handle Sumsub SDK errors
     console.error('Sumsub SDK Error:', error);
   };
+
+  const createApplicant = async () => {
+    try {
+      const response = await axios.post(EXPRESS_SERVER_URL +'/create-applicant', {
+        externalUserId: selectedAddress,
+        levelName: 'dnxt', // Provide the appropriate level name
+      });
+      setApplicantId(response.data.id);
+      console.log('Applicant created:', response.data);
+    } catch (error) {
+      console.error('Error creating applicant:', error);
+    }
+  };
+  
+  // Function to create an access token
+  const createAccessToken = async () => {
+    try {
+      const response = await axios.post(EXPRESS_SERVER_URL +'/create-access-token', {
+        externalUserId: selectedAddress,
+        levelName: 'dnxt', // Provide the appropriate level name
+      });
+      setAccessToken(response.data.token);
+      console.log('Access Token:', accessToken);
+    } catch (error) {
+      console.error('Error creating access token:', error);
+    }
+  };
   
 
   const handleConfirmClick = async () => {
     startKYC();
     setIsKycConfirmed(true);
     setApplicantId(selectedAddress);
-    try {
-      // Make a POST request to your server to create the applicant
-      const applicantResponse = await axios.post(EXPRESS_SERVER_URL + '/create-applicant', {
-        externalUserId: selectedAddress, // Pass the Ethereum address as externalUserId
-        levelName: 'dnxt', // Adjust the levelName as needed
-      });
-    
-      console.log('Applicant created:', applicantResponse.data);
-    
-      // Now that the applicant is created successfully, create the access token
-      try {
-        const accessTokenResponse = await axios.post(EXPRESS_SERVER_URL + '/create-access-token', {
-          selectedAddress, // Pass the Ethereum address to the server
-          levelName: 'dnxt', // Adjust the levelName as needed
-        });
-      
-        // Extract the access token from the response data
-        const accessToken = accessTokenResponse.data.token;
-      
-        // Log the access token
-        console.log('Access Token:', accessToken);
-      
-        // Call the setAccessToken function to set it in your application
-        setAccessToken(accessToken);
-      
-        // Handle the response or update your component's state as needed
-      } catch (accessTokenError) {
-        console.error('Error creating access token:', accessTokenError);
-        // Handle errors if needed
-      }
-    } catch (applicantError) {
-      console.error('Error creating applicant:', applicantError);
-      // Handle errors if needed
-    }
-    
+    createApplicant();
+    createAccessToken();
+
     
     
     
