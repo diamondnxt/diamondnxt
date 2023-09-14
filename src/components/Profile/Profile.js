@@ -96,7 +96,7 @@ const Profile = ({
 {isKycStarted ? (
   // Render KYC form or other KYC-related content here
   // Example: <KYCForm />
-  <KYC isKycStarted={isKycStarted} startKYC={startKYC} closeKYCModal={closeKYCModal} />
+  <KYC isKycStarted={isKycStarted} startKYC={startKYC} closeKYCModal={closeKYCModal} selectedAddress={selectedAddress} />
 ) : null}
 
     </div>

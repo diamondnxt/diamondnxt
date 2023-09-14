@@ -18,17 +18,6 @@ const UserInfo = (props) => {
     }
   }
 
-  const symbol = () => {
-    switch (window.ethereum.chainId) {
-      case "0x1": // ETH
-        return ('ETH');
-      case "0x89": // MATIC
-        return ('MATIC');
-      default:
-        return null; // Add a default case
-    }
-  }
-
   const explorer = () => {
     switch (window.ethereum.chainId) {
       case "0x1": // ETH
@@ -82,11 +71,6 @@ const UserInfo = (props) => {
             </div>
             <div className="balances-label">Balances:</div>
             <div className="balances-value">
-              <div>
-                <b>
-                  {props.etherBalance > 0 ? parseFloat(props.etherBalance).toFixed(3) : 0} <span>{symbol()}</span>
-                </b>
-              </div>
               <div>
                 <b>
                   {props.dnxtBalance > 0 ? parseFloat(props.dnxtBalance).toFixed(3) : 0} <span>DNXT</span>

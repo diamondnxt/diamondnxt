@@ -104,7 +104,7 @@
     
   }
   
-  .staking-discount, .card {
+  .staking-discount {
     padding: 16px;
     background-color: var(--color-8);
     border-radius: 15px;
