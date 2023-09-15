@@ -3,7 +3,7 @@ import SumsubWebSdk from "@sumsub/websdk-react";
 import axios from 'axios';
 
 const SUMSUB_BASE_URL = 'https://api.sumsub.com';
-const EXPRESS_SERVER_URL = 'http://servernext.vercel.app/api/sumsub'; // Update with your server's URL
+const EXPRESS_SERVER_URL = 'https://serverdnxt.vercel.app/'; // Update with your server's URL
 const levelName = 'dnxt';
 
 const KYC = ({
