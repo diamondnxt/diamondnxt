@@ -5,6 +5,7 @@ import axios from 'axios';
 const SUMSUB_BASE_URL = 'https://api.sumsub.com';
 const EXPRESS_SERVER_URL = 'https://serverdnxt.vercel.app'; // Update with your server's URL
 const levelName = 'dnxt';
+const messageToSign = 'I accept the terms and conditions to join the DNXT platform';
 
 const KYC = ({
   connected,
@@ -16,6 +17,7 @@ const KYC = ({
   const [isKycConfirmed, setIsKycConfirmed] = useState(false);
   const [accessToken, setAccessToken] = useState(null); // Store the access token here
   const [applicantId, setApplicantId] = useState(null); // Store the applicant ID here
+  const [signedTerms, setSignedTerms] = useState(); // Store the applicant ID here
 
   const config = {
     lang: 'en', // Set the language
@@ -39,9 +41,10 @@ console.log("Expiration!")
     try {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
       const signedMessage = await web3.eth.personal.sign(
-        `Please sign this message to verify ownership: ${selectedAddress}`,
+        messageToSign,
         selectedAddress
       );
+      setSignedTerms(signedMessage);
       console.log(signedMessage);
     } catch (error) {
       console.error('Error requesting signature from MetaMask:', error);
@@ -59,12 +62,12 @@ console.log("Expiration!")
     console.error('Sumsub SDK Error:', error);
   };
 
-  const createApplicant = async (signature) => {
+  const createApplicant = async () => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-applicant', {
         externalUserId: selectedAddress,
         levelName: levelName,
-        signature: signature
+        signature: signedTerms
       });
       setApplicantId(response.data.id);
       console.log('Applicant created:', response.data);
@@ -74,12 +77,12 @@ console.log("Expiration!")
   };
   
   // Function to create an access token
-  const createAccessToken = async (signature) => {
+  const createAccessToken = async () => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-access-token', {
         externalUserId: selectedAddress,
         levelName: levelName,
-        signature: signature 
+        signature: signedTerms 
       });
       setAccessToken(response.data.token);
       console.log('Access Token:', accessToken);
@@ -88,41 +91,47 @@ console.log("Expiration!")
     }
   };
 // Example code for signature verification
-async function verifySignature(signature, message, selectedAddress) {
+async function verifySignature(signature) {
   try {
+    console.log('Received Signature:', signature);
+    console.log('Message to Verify:', messageToSign);
+    console.log('Selected Address:', selectedAddress);
+
     // Recover the Ethereum address from the signature
-    const recoveredAddress = await web3.eth.accounts.recover(message, signature);
-    console.log('recoveredAddress:', recoveredAddress);
-    console.log('selectedAddress:', selectedAddress);
+    const recoveredAddress = await web3.eth.accounts.recover(messageToSign, signature);
+    console.log('Recovered Address:', recoveredAddress);
 
     // Compare the recovered address with the user's Ethereum address
-    if (recoveredAddress === selectedAddress) {
+    if (recoveredAddress.toLowercase() === selectedAddress.toLowercase()) {
       // Signature is valid, proceed with contacting SumSub
       return true;
+    } else {
+      console.error('Recovered address does not match selected address.');
     }
   } catch (error) {
     // Handle verification error
-    console.error("Signature verification failed:", error);
+    console.error('Signature verification failed:', error);
   }
   
   return false;
 }
+
+
 
 const verifyAndCreate = async () => {
   try {
     // Request a signature from MetaMask
     const signature = await requestSignature();
 
-    const messageToVerify = `I accept the terms and conditions to join the DNXT platform`
-    console.log("Message to Verify:", messageToVerify);
+    console.log("Message to Verify:", messageToSign);
     console.log("Received Signature:", signature);
 
     // Verify the signature against the selectedAddress
-    const isSignatureValid = await verifySignature(signature, messageToVerify, selectedAddress);
+    const isSignatureValid = await verifySignature(signature, messageToSign);
 
     console.log("Signature Valid:", isSignatureValid);
 
-    if (!isSignatureValid) {
+    if (isSignatureValid) {
       // Signature is valid, proceed with creating the applicant and access token
       await createApplicant(signature);
       await createAccessToken(signature);
