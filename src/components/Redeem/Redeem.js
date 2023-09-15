@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
-import "./Redeem.css";
+import "./../../style/Redeem.css";
 import * as ABIS from "./../../constants/ABIS";
 import * as addresses from "./../../constants/addresses";
 

@@ -40,28 +40,3 @@
     font-weight: 400;
     font-size: 16px;
   }
-  
-  .redeem-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 16px;
-  }
-  
-  .redeem-button:disabled,
-  .redeem-button[disabled] {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  .redeem-button:hover {
-    background-color: #0056b3;
-  }
-  
