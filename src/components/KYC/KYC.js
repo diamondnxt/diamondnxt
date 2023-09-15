@@ -45,7 +45,7 @@ console.log("Expiration!")
         selectedAddress
       );
       setSignedTerms(signedMessage);
-      console.log(signedMessage);
+      console.log("signed terms: "+signedTerms);
     } catch (error) {
       console.error('Error requesting signature from MetaMask:', error);
     }    
@@ -91,18 +91,18 @@ console.log("Expiration!")
     }
   };
 // Example code for signature verification
-async function verifySignature(signature) {
+async function verifySignature() {
   try {
-    console.log('Received Signature:', signature);
+    console.log('Received Signature:', signedTerms);
     console.log('Message to Verify:', messageToSign);
     console.log('Selected Address:', selectedAddress);
 
     // Recover the Ethereum address from the signature
-    const recoveredAddress = await web3.eth.accounts.recover(messageToSign, signature);
+    const recoveredAddress = await web3.eth.personal.ecRecover(messageToSign, signedTerms);
     console.log('Recovered Address:', recoveredAddress);
 
     // Compare the recovered address with the user's Ethereum address
-    if (recoveredAddress.toLowercase() === selectedAddress.toLowercase()) {
+    if (recoveredAddress.toLowerCase() === selectedAddress.toLowerCase()) {
       // Signature is valid, proceed with contacting SumSub
       return true;
     } else {
@@ -124,10 +124,10 @@ const verifyAndCreate = async () => {
     const signature = await requestSignature();
 
     console.log("Message to Verify:", messageToSign);
-    console.log("Received Signature:", signature);
+    console.log("Received Signature:", signedTerms);
 
     // Verify the signature against the selectedAddress
-    const isSignatureValid = await verifySignature(signature, messageToSign);
+    const isSignatureValid = await verifySignature();
 
     console.log("Signature Valid:", isSignatureValid);
 
