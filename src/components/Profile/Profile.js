@@ -90,7 +90,7 @@ const Profile = ({
       ) : isBlacklisted ? (
         <p>Status: Blacklisted</p>
       ) : (
-        <button className="menuItem" onClick={() => setIsKycStarted(true)}>Start KYC Process</button>
+        <button className="button" onClick={() => setIsKycStarted(true)}>Start KYC Process</button>
       )}
 
 {isKycStarted ? (
@@ -131,7 +131,7 @@ const Profile = ({
               <ul>
                 <li>You have not performed any transactions yet</li>
                 <br></br>
-                <button className="menuItem" onClick={() => connectWallet()}>Buy diamonds</button>
+                <button className="button" onClick={() => connectWallet()}>Buy diamonds</button>
               </ul>
             </div>
           </div>
@@ -165,7 +165,7 @@ const Profile = ({
         </div>
       </div>
             ) : (<><br></br><br></br><br></br><br></br><br></br><SwitchToPolygon connectWallet={connectWallet} connected={connected} /></>)
-            ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="menuItem" onClick={() => connectWallet()}>Connect</button></>)
+            ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="button" onClick={() => connectWallet()}>Connect</button></>)
           );
         };
 

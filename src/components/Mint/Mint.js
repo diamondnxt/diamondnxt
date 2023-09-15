@@ -4,7 +4,7 @@ import * as addresses from "./../../constants/addresses";
 import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
 import { Listbox, Transition } from '@headlessui/react';
 import ImageUploader from "../ImageUploader/ImageUploader";
-import "./mint.css"
+import "./../../style/mint.css"
 import Logo from "./../../images/logo.svg";
 
 
@@ -418,7 +418,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
 
         </div>
       ) : (<><br></br><br></br><br></br><br></br><br></br><SwitchToPolygon connectWallet={connectWallet} connected={connected} /></>)
-    ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="menuItem" onClick={() => connectWallet()}>Connect</button></>)
+    ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="button" onClick={() => connectWallet()}>Connect</button></>)
   );
 };
 

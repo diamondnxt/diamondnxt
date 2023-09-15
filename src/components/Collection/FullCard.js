@@ -47,12 +47,12 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
                     href={buyLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="menuItem"
+                    className="button"
                 >
                     BUY
                 </a>
                 <br />
-                <Link className="menuItem" to="/explorer">EXPLORE</Link>
+                <Link className="button" to="/explorer">EXPLORE</Link>
             </div>
         </>
     );

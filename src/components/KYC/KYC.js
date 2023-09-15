@@ -97,11 +97,11 @@ console.log("Expiration!")
             baseUrl={SUMSUB_BASE_URL}
           />
         ) : null}
-        <button className="menuItem" onClick={handleConfirmClick}>
+        <button className="button" onClick={handleConfirmClick}>
           Confirm
         </button>
         <div>{applicantId}</div>
-        <button className="menuItem" onClick={closeKYCModal}>
+        <button className="button" onClick={closeKYCModal}>
           Cancel
         </button>
       </div>

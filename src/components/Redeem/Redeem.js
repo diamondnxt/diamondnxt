@@ -119,7 +119,7 @@ const Redeem = ({
 
 
 <button
-  className="menuItem"
+  className="button"
   onClick={() => setShowModal(true)}
 >
   Redeem Selected
@@ -131,10 +131,10 @@ const Redeem = ({
                 <h2>Confirm Redeem</h2>
                 {renderDiamondsToRedeem()}
                 {/* Additional information can be displayed here */}
-                <button className="menuItem" onClick={redeemSelectedDiamonds}>
+                <button className="button" onClick={redeemSelectedDiamonds}>
                   Confirm
                 </button>
-                <button className="menuItem" onClick={closeModal}>
+                <button className="button" onClick={closeModal}>
                   Cancel
                 </button>
               </div>
@@ -146,7 +146,7 @@ const Redeem = ({
         <><br></br><br></br><br></br><br></br><br></br><SwitchToPolygon connectWallet={connectWallet} connected={connected} /></>
       )
     ) : (
-      <><br></br><br></br><br></br><br></br><br></br><br></br><button className="menuItem" onClick={() => connectWallet()}>Connect</button></>
+      <><br></br><br></br><br></br><br></br><br></br><br></br><button className="button" onClick={() => connectWallet()}>Connect</button></>
     )
   );
 };

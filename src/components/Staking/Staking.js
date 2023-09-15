@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import * as ABIS from "./../../constants/ABIS";
 import * as addresses from "./../../constants/addresses";
-import "./Staking.css"; // Import your CSS file
+import "./../../style/Staking.css"; // Import your CSS file
 
 const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance }) => {
 
