@@ -36,7 +36,7 @@ console.log("Expiration!")
   const requestSignature = async () => {
     if (!connected) {
       console.error('MetaMask not found');
-      return;
+      return null; // Return null in case of an error
     }
     try {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -45,12 +45,14 @@ console.log("Expiration!")
         selectedAddress
       );
       setSignedTerms(signedMessage);
-      console.log("signed terms: "+signedTerms);
+      console.log("signed terms: " + signedTerms);
+      return signedMessage; // Return the signed message
     } catch (error) {
       console.error('Error requesting signature from MetaMask:', error);
-    }    
+      return null; // Return null in case of an error
+    }
   };
-
+  
 
   const messageHandler = (type, payload) => {
     // Handle Sumsub SDK messages
@@ -62,12 +64,12 @@ console.log("Expiration!")
     console.error('Sumsub SDK Error:', error);
   };
 
-  const createApplicant = async () => {
+  const createApplicant = async (signature) => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-applicant', {
         externalUserId: selectedAddress,
         levelName: levelName,
-        signature: signedTerms
+        signature: signature
       });
       setApplicantId(response.data.id);
       console.log('Applicant created:', response.data);
@@ -77,12 +79,12 @@ console.log("Expiration!")
   };
   
   // Function to create an access token
-  const createAccessToken = async () => {
+  const createAccessToken = async (signature) => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-access-token', {
         externalUserId: selectedAddress,
         levelName: levelName,
-        signature: signedTerms 
+        signature: signature 
       });
       setAccessToken(response.data.token);
       console.log('Access Token:', accessToken);
@@ -91,14 +93,14 @@ console.log("Expiration!")
     }
   };
 // Example code for signature verification
-async function verifySignature() {
+async function verifySignature(signature) {
   try {
-    console.log('Received Signature:', signedTerms);
+    console.log('Received Signature:', signature);
     console.log('Message to Verify:', messageToSign);
     console.log('Selected Address:', selectedAddress);
 
     // Recover the Ethereum address from the signature
-    const recoveredAddress = await web3.eth.personal.ecRecover(messageToSign, signedTerms);
+    const recoveredAddress = await web3.eth.personal.ecRecover(messageToSign, signature);
     console.log('Recovered Address:', recoveredAddress);
 
     // Compare the recovered address with the user's Ethereum address
@@ -123,27 +125,40 @@ const verifyAndCreate = async () => {
     // Request a signature from MetaMask
     const signature = await requestSignature();
 
-    console.log("Message to Verify:", messageToSign);
-    console.log("Received Signature:", signedTerms);
+    if (signature !== null) {
+      console.log("Message to Verify:", messageToSign);
+      console.log("Received Signature:", signature);
 
-    // Verify the signature against the selectedAddress
-    const isSignatureValid = await verifySignature();
-
-    console.log("Signature Valid:", isSignatureValid);
-
-    if (isSignatureValid) {
-      // Signature is valid, proceed with creating the applicant and access token
-      await createApplicant(signature);
-      await createAccessToken(signature);
+      // Verify the signature against the selectedAddress using .then()
+      verifySignature(signature)
+        .then((isSignatureValid) => {
+          console.log("Signature Valid:", isSignatureValid);
+          if (isSignatureValid) {
+            // Signature is valid, proceed with creating the applicant and access token
+            return Promise.all([
+              createApplicant(signature),
+              createAccessToken(signature),
+            ]);
+          } else {
+            console.error('Signature verification failed.');
+            // Handle the case where the signature is not valid
+          }
+        })
+        .catch((error) => {
+          console.error('Error during verification:', error);
+          // Handle errors from verifySignature as needed
+        });
     } else {
-      console.error('Signature verification failed.');
-      // Handle the case where the signature is not valid
+      console.error('Error requesting signature from MetaMask.');
+      // Handle the case where signature is null
     }
   } catch (error) {
     console.error('Error during verification and creation:', error);
     // Handle errors as needed
   }
 };
+
+
 
   
   const handleConfirmClick = async () => {
