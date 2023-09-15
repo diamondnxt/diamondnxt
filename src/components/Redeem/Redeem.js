@@ -87,9 +87,9 @@ const Redeem = ({
     connected ? (
       window.ethereum.chainId === "0x89" ? (
         <div className="redeem-container">
-          <h2 className="section-title">Redeem Your NFTs</h2>
+          <h2 className="title">Redeem Your NFTs</h2>
           {isLoading ? (
-          <p>Loading...</p>
+          <p className="subtitle">Loading...</p>
         ) : (
           nftBalances.length > 0 ? (
             <div className="nft-list">
@@ -113,7 +113,7 @@ const Redeem = ({
               ))}
             </div>
           ) : (
-            <p>No NFTs to redeem.</p>
+            <p className="subtitle">No NFTs to redeem.</p>
           )
         )}
 

@@ -7,9 +7,11 @@ const EXPRESS_SERVER_URL = 'https://serverdnxt.vercel.app'; // Update with your 
 const levelName = 'dnxt';
 
 const KYC = ({
+  connected,
   startKYC,
   closeKYCModal,
-  selectedAddress
+  selectedAddress,
+  web3
 }) => {
   const [isKycConfirmed, setIsKycConfirmed] = useState(false);
   const [accessToken, setAccessToken] = useState(null); // Store the access token here
@@ -29,7 +31,22 @@ const KYC = ({
 console.log("Expiration!")
   };
 
-
+  const requestSignature = async () => {
+    if (!connected) {
+      console.error('MetaMask not found');
+      return;
+    }
+    try {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const signedMessage = await web3.eth.personal.sign(
+        `Please sign this message to verify ownership: ${selectedAddress}`,
+        selectedAddress
+      );
+      console.log(signedMessage);
+    } catch (error) {
+      console.error('Error requesting signature from MetaMask:', error);
+    }    
+  };
 
 
   const messageHandler = (type, payload) => {
@@ -42,11 +59,12 @@ console.log("Expiration!")
     console.error('Sumsub SDK Error:', error);
   };
 
-  const createApplicant = async () => {
+  const createApplicant = async (signature) => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-applicant', {
         externalUserId: selectedAddress,
-        levelName: levelName, // Provide the appropriate level name
+        levelName: levelName,
+        signature: signature
       });
       setApplicantId(response.data.id);
       console.log('Applicant created:', response.data);
@@ -56,11 +74,12 @@ console.log("Expiration!")
   };
   
   // Function to create an access token
-  const createAccessToken = async () => {
+  const createAccessToken = async (signature) => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-access-token', {
         externalUserId: selectedAddress,
-        levelName: levelName, // Provide the appropriate level name
+        levelName: levelName,
+        signature: signature 
       });
       setAccessToken(response.data.token);
       console.log('Access Token:', accessToken);
@@ -68,16 +87,65 @@ console.log("Expiration!")
       console.error('Error creating access token:', error);
     }
   };
-  
+// Example code for signature verification
+async function verifySignature(signature, message, selectedAddress) {
+  try {
+    // Recover the Ethereum address from the signature
+    const recoveredAddress = await web3.eth.accounts.recover(message, signature);
+    console.log('recoveredAddress:', recoveredAddress);
+    console.log('selectedAddress:', selectedAddress);
 
+    // Compare the recovered address with the user's Ethereum address
+    if (recoveredAddress === selectedAddress) {
+      // Signature is valid, proceed with contacting SumSub
+      return true;
+    }
+  } catch (error) {
+    // Handle verification error
+    console.error("Signature verification failed:", error);
+  }
+  
+  return false;
+}
+
+const verifyAndCreate = async () => {
+  try {
+    // Request a signature from MetaMask
+    const signature = await requestSignature();
+
+    const messageToVerify = `I accept the terms and conditions to join the DNXT platform`
+    console.log("Message to Verify:", messageToVerify);
+    console.log("Received Signature:", signature);
+
+    // Verify the signature against the selectedAddress
+    const isSignatureValid = await verifySignature(signature, messageToVerify, selectedAddress);
+
+    console.log("Signature Valid:", isSignatureValid);
+
+    if (!isSignatureValid) {
+      // Signature is valid, proceed with creating the applicant and access token
+      await createApplicant(signature);
+      await createAccessToken(signature);
+    } else {
+      console.error('Signature verification failed.');
+      // Handle the case where the signature is not valid
+    }
+  } catch (error) {
+    console.error('Error during verification and creation:', error);
+    // Handle errors as needed
+  }
+};
+
+  
   const handleConfirmClick = async () => {
     startKYC();
     setIsKycConfirmed(true);
-    setApplicantId(selectedAddress);
-    createApplicant()
-    createAccessToken()
+  
+    // Call the verifyAndCreate function
+    verifyAndCreate();
   };
 
+  
 
 
   return (

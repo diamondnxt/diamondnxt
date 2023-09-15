@@ -82,7 +82,7 @@ const Profile = ({
         <div className="profile-container">
         <div className="profile-box">
       <h2 className="section-title">Your Profile</h2>
-      <p className="subtitle">Address: {selectedAddress}</p>
+      <p className="section-title">Address: {selectedAddress}</p>
 
       {/* Whitelist and Blacklist Status */}
       {isWhitelisted ? (
@@ -96,7 +96,7 @@ const Profile = ({
 {isKycStarted ? (
   // Render KYC form or other KYC-related content here
   // Example: <KYCForm />
-  <KYC isKycStarted={isKycStarted} startKYC={startKYC} closeKYCModal={closeKYCModal} selectedAddress={selectedAddress} />
+  <KYC isKycStarted={isKycStarted} startKYC={startKYC} closeKYCModal={closeKYCModal} selectedAddress={selectedAddress} web3={web3} connected={connected} />
 ) : null}
 
     </div>
@@ -157,7 +157,7 @@ const Profile = ({
         ))}
       </div>
     ) : (
-      <p>You currently have no diamonds.</p>
+      <h2 className="section-title">You currently have no diamonds.</h2>
     )}
   </div>
 </div>
