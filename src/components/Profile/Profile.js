@@ -129,9 +129,8 @@ const Profile = ({
             <div className="section-content">
               {/* Example activity content */}
               <ul>
-                <li>You have not performed any transactions yet</li>
+              <h2 className="section-title">You have not performed any transactions yet</h2>
                 <br></br>
-                <button className="button" onClick={() => connectWallet()}>Buy diamonds</button>
               </ul>
             </div>
           </div>
