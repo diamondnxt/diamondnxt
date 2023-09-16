@@ -64,12 +64,11 @@ console.log("Expiration!")
     console.error('Sumsub SDK Error:', error);
   };
 
-  const createApplicant = async (signature) => {
+  const createApplicant = async () => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-applicant', {
         externalUserId: selectedAddress,
-        levelName: levelName,
-        signature: signature
+        levelName: levelName
       });
       setApplicantId(response.data.id);
       console.log('Applicant created:', response.data);
@@ -79,15 +78,15 @@ console.log("Expiration!")
   };
   
   // Function to create an access token
-  const createAccessToken = async (signature) => {
+  const createAccessToken = async () => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL +'/create-access-token', {
         externalUserId: selectedAddress,
-        levelName: levelName,
-        signature: signature 
+        levelName: levelName
       });
       setAccessToken(response.data.token);
       console.log('Access Token:', accessToken);
+      console.log('Access Token response:', response);
     } catch (error) {
       console.error('Error creating access token:', error);
     }
@@ -136,8 +135,8 @@ const verifyAndCreate = async () => {
           if (isSignatureValid) {
             // Signature is valid, proceed with creating the applicant and access token
             return Promise.all([
-              createApplicant(signature),
-              createAccessToken(signature),
+              createApplicant(),
+              createAccessToken(),
             ]);
           } else {
             console.error('Signature verification failed.');
