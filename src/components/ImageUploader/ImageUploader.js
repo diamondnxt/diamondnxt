@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ImageUploading from "react-images-uploading";
 
-const ImageUploader = () => {
-  const [images, setImages] = useState([]);
+const ImageUploader = ({ images, setImages }) => {
+ 
   const [showAmplifiedImage, setShowAmplifiedImage] = useState(false);
   const maxNumber = 1;
 

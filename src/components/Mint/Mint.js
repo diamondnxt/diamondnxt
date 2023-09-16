@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import * as ABIS from "./../../constants/ABIS";
 import * as addresses from "./../../constants/addresses";
 import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
@@ -21,6 +22,8 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
   const [certificateNumber, setCertificateNumber] = useState();
   const [caratWeight, setCaratWeight] = useState(null);
 
+  const [images, setImages] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -41,6 +44,10 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
 
   const confirmMint = () => {
     fetchJson()
+    console.log("images.length: "+images.length)
+    if (images.length > 0) {
+      uploadToServer(images[0]["data_url"]);
+    }
     const parameters = [
       selectedLab,
       certificateNumber,
@@ -117,7 +124,18 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
     }
   }
 
-
+  
+  const uploadToServer = async (dataURL) => {
+    try {
+      const response = await axios.post('https://dnxt.app/mint', {
+        image: dataURL
+      });
+      console.log("Image uploaded successfully:", response.data);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+  
 
 
 
@@ -382,7 +400,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
             <input name="certificateNumber" onChange={handleCertificateChange} />
           </div>
           <br></br>
-          <ImageUploader />
+          <ImageUploader images={images} setImages={setImages} />
           <br></br>
 
           <button className="button" onClick={() => setShowModal(true)}>Mint</button>
