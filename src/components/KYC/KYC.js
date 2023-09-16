@@ -85,11 +85,12 @@ const KYC = ({
         externalUserId: selectedAddress,
         levelName: levelName
       });
-      setAccessToken(response.data.token);
-      console.log('Access Token:', accessToken);
+      setAccessToken(response.data.data.token);
       console.log('Access Token response:', response);
       console.log('Access Token data:', response.data);
-      console.log('Access Token token:', response.data.token);
+      console.log('Access Token token response:', response.data.data.token);
+      console.log('Access Token global:', accessToken);
+
     } catch (error) {
       console.error('Error creating access token:', error);
     }
