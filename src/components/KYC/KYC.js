@@ -68,7 +68,8 @@ const KYC = ({
     try {
       const response = await axios.post(EXPRESS_SERVER_URL + '/create-applicant', {
         externalUserId: selectedAddress,
-        levelName: levelName
+        levelName: levelName,
+        signature: signedTerms
       });
       setApplicantId(response.data.id);
       console.log('Applicant created:', response.data);
@@ -83,7 +84,8 @@ const KYC = ({
     try {
       const response = await axios.post(EXPRESS_SERVER_URL + '/create-access-token', {
         externalUserId: selectedAddress,
-        levelName: levelName
+        levelName: levelName,
+        signature: signedTerms
       });
       setAccessToken(response.data.data.token);
       console.log('Access Token response:', response);
@@ -144,6 +146,7 @@ const KYC = ({
             console.log("Signature Valid:", isSignatureValid);
             if (isSignatureValid) {
               // Signature is valid, proceed with creating the applicant and access token
+              console.log("Signed Terms:", signedTerms);
               return Promise.all([
                 createApplicant(),
                 createAccessToken(),
