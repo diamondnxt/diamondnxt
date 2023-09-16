@@ -1,8 +1,19 @@
+.mint-container {
+  padding: 16px;
+  background-color: var(--color-8);
+  border-radius: 15px;
+  max-width: 512px;
+  margin: 64px auto; /* Center the card horizontally and add margin on top */
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .certificate-container,
 .listbox-container {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  background-color: var(--color-8);
 }
 
 .label {
@@ -113,7 +124,9 @@ z-index: 9998;
 }
 
 .modal-content {
-background: white;
+background: var(--color-8);
+color: var(--color-3);
+
 padding: 20px;
 border-radius: 8px;
 max-width: 500px;
@@ -125,8 +138,7 @@ box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.
 
 .modal-content p {
   /* Styles for the text before the colon */
-  color: #333;
-  font-weight: bold;
+  color: var(--color-3);
    margin: 5px 0;
 }
 

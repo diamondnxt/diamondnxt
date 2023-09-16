@@ -136,17 +136,11 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
   return (
     connected ? (
       window.ethereum.chainId === "0x89" ? (
-        <div>
-          <br></br>
-          <br></br>
-          <br></br>
-          <h1 className="label">
-            <img src={Logo} width="64px" alt=""/>
-            Diamond NXT Mint Dashboard
-          </h1>
-          <br></br>
-          <br></br>
-          <br></br>
+        <div className="mint-container">
+        <h1 className="label">
+          <img src={Logo} width="64px" alt="Logo" />
+          Diamond NXT Mint Dashboard
+        </h1>  
           <div className="listbox-container">
             <label className="label">Cut:</label>
             <Listbox value={selectedCut} onChange={setSelectedCut}>
@@ -391,7 +385,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
           <ImageUploader />
           <br></br>
 
-          <button className="mint" onClick={() => setShowModal(true)}>Mint</button>
+          <button className="button" onClick={() => setShowModal(true)}>Mint</button>
 
           <br></br>
           {showModal && (
@@ -410,8 +404,8 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
                 <p>Certificate Number: <span className="value">{certificateNumber}</span></p>
                 <p>Carat Weight: <span className="value">{caratWeight}</span></p>
                 {errorMessage && <label className="missingParameters">{errorMessage}</label>}
-                <button className="mint" onClick={() => confirmMint()}>Confirm</button>
-                <button className="mint" onClick={() => setShowModal(false)}>Cancel</button>
+                <button className="button" onClick={() => confirmMint()}>Confirm</button>
+                <button className="button" onClick={() => setShowModal(false)}>Cancel</button>
               </div>
             </div>
           )}

@@ -19,7 +19,7 @@ header {
 .Menu {
   position: fixed;
   top: 0px; /* Adjust the top position as needed */
-  left: 20px; /* Adjust the left position as needed */
+  left: 0px; /* Adjust the left position as needed */
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -29,6 +29,8 @@ header {
   overflow-y: auto; /* enable scrolling if items exceed max-height */
   margin-top: auto;
   border-radius: 8px;
+  opacity: 0.8;
+
 }
 
 .hamburger {
@@ -47,7 +49,7 @@ header {
   display: block;
   padding: 8px 32px;
   text-decoration: none;
-  background-color: var(--color-7);
+  opacity: 1;
 }
 
 .menuItem:hover {
@@ -236,7 +238,6 @@ header {
   position: fixed;
   top: 0;
   right: 0;
-  padding: 10px 20px; /* Adjust padding as needed */
 }
 
 
@@ -288,7 +289,7 @@ header {
 
  a:visited { 
   text-decoration: none; 
-  color: var(--color-6); 
+  color: var(--color-5); 
  }
 
 @media (max-width: 768px) {

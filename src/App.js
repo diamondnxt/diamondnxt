@@ -10,12 +10,15 @@ import Profile from "./components/Profile/Profile.js";
 import Redeem from "./components/Redeem/Redeem.js";
 import Staking from "./components/Staking/Staking.js";
 import FullCard from "./components/Collection/FullCard.js";
+import Footer from "./components/Footer/Footer.js";
+import Menu from "./components/Menu/Menu.js";
 
 const App = () => {
     const walletProps = Wallet();
     return (
         <Router>
             <Header {...walletProps} />
+            <Menu />
             <Routes>
                 <Route path="/explorer/:id" element={<FullCard {...walletProps} />} />
                 <Route path="/explorer" element={<Explorer />} />
@@ -25,6 +28,7 @@ const App = () => {
                 <Route path="/staking" element={<Staking {...walletProps} />} />
                 <Route path="/" element={<Home />} />
             </Routes>
+            <Footer />
         </Router>
     )
 }

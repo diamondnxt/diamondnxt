@@ -8,17 +8,16 @@ html,
     --dark-blue: var(--color-9);
 
     --white: hsl(0, 0%, 100%);
-
-    --color-1: #F8F9FA;
-    --color-2: #E9ECEF;
-    --color-3: #DEE2E6;
-    --color-4: #CED4DA;
-    --color-5: #ADB5BD;
-    --color-6: #6C757D;
-    --color-7: #495057;
+    --color-0: #E3E8ED;  /* Light Gray */
+    --color-1: #CFD5DC;  /* Slightly Desaturated Blue Gray */
+    --color-2: #BAC2CA;  /* Blue Gray */
+    --color-3: #A5AEC0;  /* Deeper Blue Gray */
+    --color-4: #8996A8;  /* Subtle Blue */
+    --color-5: #6C7B94;  /* Fading Purple */
+    --color-6: #5A6378;  /* Purple-Gray */
+    --color-7: #404953;  /* Darkest Gray-Blue */
     --color-8: #343A40;
     --color-9: #212529;
-
 
 }
 
@@ -40,48 +39,24 @@ body {
 }
 
 .button {
-    align-items: center;
-    appearance: none;
-    background-color: #EEF2FF;
-    border-radius: 8px;
-    border-width: 2px;
-    border-color: #536DFE;
-    box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px, rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: #536DFE;
+    background-color: var(--color-6);  /* Subtle Blue as primary button color */
+    border: none;
+    border-radius: 5px;
+    color: var(--color-1);            /* Lightest Gray for text */
     cursor: pointer;
-    display: inline-flex;
-    font-family: "JetBrains Mono", monospace;
-    height: 56px;
-    justify-content: center;
-    line-height: 1;
-    list-style: none;
-    overflow: hidden;
-    padding-left: 24px;
-    padding-right: 24px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    transition: box-shadow 0.15s, transform 0.15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow, transform;
-    font-size: 20px;
-  }
-  
-  .button:focus {
-    outline: none;
-    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(83, 109, 254, 0.4) 0 2px 4px, rgba(83, 109, 254, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-  }
-  
-  .button:hover {
-    box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px, rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-    transform: translateY(-2px);
-  }
-  
-  .button:active {
-    box-shadow: #D6D6E7 0 3px 7px inset;
-    transform: translateY(2px);
-  }
+    font-size: 16px;
+    padding: 12px 24px;
+    transition: transform 0.3s, background-color 0.3s;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px var(--color-8);  /* Using Purple-Gray for a subtle text shadow */
+}
+
+.button:hover {
+    background-color: var(--color-7);  /* Fading Purple for hover effect */
+    transform: translateY(-2px);       /* Slight lift on hover */
+}
+
+.button:active {
+    background-color: var(--color-8);  /* Purple-Gray for active/click effect */
+    transform: translateY(0);
+}
