@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SumsubWebSdk from "@sumsub/websdk-react";
 import axios from 'axios';
 
@@ -28,31 +28,9 @@ const KYC = ({
     // Sumsub options here
   };
 
-
   const accessTokenExpirationHandler = async () => {
     console.log("Expiration!")
   };
-
-  const requestSignature = async () => {
-    if (!connected) {
-      console.error('MetaMask not found');
-      return null; // Return null in case of an error
-    }
-    try {
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-      const signedMessage = await web3.eth.personal.sign(
-        messageToSign,
-        selectedAddress
-      );
-      setSignedTerms(signedMessage);
-      console.log("signed terms: " + signedTerms);
-      return signedMessage; // Return the signed message
-    } catch (error) {
-      console.error('Error requesting signature from MetaMask:', error);
-      return null; // Return null in case of an error
-    }
-  };
-
 
   const messageHandler = (type, payload) => {
     // Handle Sumsub SDK messages
@@ -64,44 +42,51 @@ const KYC = ({
     console.error('Sumsub SDK Error:', error);
   };
 
-  const createApplicant = async () => {
+  // Function to request the user's signature
+  const requestSignature = async () => {
+    if (!connected) {
+      console.error('MetaMask not found');
+      return null;
+    }
+    try {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      const signedMessage = await web3.eth.personal.sign(messageToSign, selectedAddress);
+      setSignedTerms(signedMessage);
+      return signedMessage;
+    } catch (error) {
+      console.error('Error requesting signature from MetaMask:', error);
+      return null;
+    }
+  };
+
+  const createApplicant = async (signature) => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL + '/create-applicant', {
         externalUserId: selectedAddress,
         levelName: levelName,
-        signature: signedTerms
+        signature: signature
       });
       setApplicantId(response.data.id);
       console.log('Applicant created:', response.data);
-      console.log('Applicant response:', response);
     } catch (error) {
       console.error('Error creating applicant:', error);
     }
   };
 
-  // Function to create an access token
-  const createAccessToken = async () => {
+  const createAccessToken = async (signature) => {
     try {
       const response = await axios.post(EXPRESS_SERVER_URL + '/create-access-token', {
         externalUserId: selectedAddress,
         levelName: levelName,
-        signature: signedTerms
+        signature: signature
       });
       setAccessToken(response.data.data.token);
-      console.log('Access Token response:', response);
       console.log('Access Token data:', response.data);
-      console.log('Access Token token response:', response.data.data.token);
-      console.log('Access Token global:', accessToken);
-
     } catch (error) {
       console.error('Error creating access token:', error);
     }
   };
 
-  // Add a useEffect to log the accessToken when it changes
-  useEffect(() => {
-    console.log('Access Token:', accessToken);
-  }, [accessToken]);
 
   // Example code for signature verification
   async function verifySignature(signature) {
@@ -148,8 +133,8 @@ const KYC = ({
               // Signature is valid, proceed with creating the applicant and access token
               console.log("Signed Terms:", signedTerms);
               return Promise.all([
-                createApplicant(),
-                createAccessToken(),
+                createApplicant(signature),
+                createAccessToken(signature),
               ]);
             } else {
               console.error('Signature verification failed.');
