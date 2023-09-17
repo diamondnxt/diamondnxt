@@ -26,7 +26,7 @@ button[disabled]{
   color: #fff; /* Text color */
   padding: 10px 20px; /* Padding around the text */
   border: none; /* Remove button border */
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 16px; /* Rounded corners */
   text-decoration: none; /* Remove underlining for links */
   cursor: pointer; /* Add pointer cursor on hover */
   transition: background-color 0.3s ease; /* Smooth background color transition */
@@ -40,7 +40,7 @@ button[disabled]{
   padding: 16px;
   background-color: var(--color-8);
 
-  border-radius: 15px;
+  border-radius: 16px;
 
   width: 300px;
   margin-top: 16px;
@@ -66,7 +66,7 @@ button[disabled]{
   padding: 16px;
   background-color: var(--color-8);
 
-  border-radius: 15px;
+  border-radius: 16px;
 
   max-width: 512px;
   margin-top: 64px;
@@ -81,14 +81,14 @@ button[disabled]{
 .card--image {
   width: 100%;
 
-  border-radius: 15px;
+  border-radius: 16px;
   background-color: transparent;
 }
 
 .card-big--image {
   width: 100%;
 
-  border-radius: 15px;
+  border-radius: 16px;
   background-color: transparent;
 }
 
@@ -151,7 +151,7 @@ h1 {
   padding: 16px;
   background-color: var(--color-9);
 
-  border-radius: 15px;
+  border-radius: 16px;
 
   margin-top: 16px;
   margin-left: 16px;

@@ -211,12 +211,12 @@ const Staking = ({ web3, connected, connectWallet, selectedAddress, dnxtBalance 
         </div>
         {connected ? (
           selectedTab === "STAKE" ? (
-            <button className="stake-button" onClick={() => stakeOrApprove()}>Stake</button>
+            <button className="button" onClick={() => stakeOrApprove()}>Stake</button>
           ) : (
-            <button className="stake-button" onClick={() => unstake()}>Unstake</button>
+            <button className="button" onClick={() => unstake()}>Unstake</button>
           )
         ) : (
-          <button className="stake-button" onClick={() => connectWallet()}>Connect Wallet</button>
+          <button className="button" onClick={() => connectWallet()}>Connect Wallet</button>
         )}
       </div>
       <div className="staking-levels">

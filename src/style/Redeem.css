@@ -3,7 +3,7 @@
 .redeem-container {
     padding: 16px;
     background-color: var(--color-8);
-    border-radius: 15px;
+    border-radius: 16px;
     max-width: 512px;
     margin: 64px auto; /* Center the card horizontally and add margin on top */
     text-align: center;

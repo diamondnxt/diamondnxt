@@ -6,7 +6,7 @@
     align-items: center; /* Center the boxes vertically */
     margin-top: 128px;
     background-color: var(--color-8);
-    border-radius: 15px;
+    border-radius: 16px;
   }
 
   .staking-levels {
@@ -19,7 +19,7 @@
   .staking-level {
     padding: 16px;
     background-color: var(--color-9);
-    border-radius: 15px;
+    border-radius: 16px;
     width: 300px;
     margin: 6px; /* Add margin between levels */
     display: flex;
@@ -60,7 +60,7 @@
   .staking-balance {
     padding: 16px;
     background-color: var(--color-9);
-    border-radius: 15px;
+    border-radius: 16px;
     width: 324px;
     color: var(--color-5);
     margin: 16px;
@@ -75,7 +75,7 @@
 
   .stake-input {
     padding: 16px;
-    border-radius: 6px;
+    border-radius: 16px;
     display: flex;
     margin: 16px;
     flex-direction: column;
@@ -84,7 +84,7 @@
   }
   
   .stake-button {
-    border-radius: 13px;
+    border-radius: 16px;
     color: #ffffff;
     font-size: 17px;
     font-weight: bold;
@@ -99,7 +99,7 @@
   
   .stake-button:hover {
     background-color: var(--color-6);
-    border-radius: 8px;
+    border-radius: 16px;
     color: #ffffff;
     
   }
@@ -107,7 +107,7 @@
   .staking-discount {
     padding: 16px;
     background-color: var(--color-8);
-    border-radius: 15px;
+    border-radius: 16px;
     color: var(--color-5);
     width: 300px;
     margin: 16px;
@@ -128,7 +128,7 @@
     background-color: var(--color-7); /* Default background color */
     color: var(--color-6); /* Default text color */
     border: none;
-    border-radius: 6px;
+    border-radius: 16px;
     padding: 8px 16px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -155,7 +155,7 @@
     color: #fff;
     padding: 6px 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: 16px;
     cursor: pointer;
   }
 

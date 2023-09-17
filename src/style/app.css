@@ -39,9 +39,9 @@ body {
 }
 
 .button {
-    background-color: var(--color-6);  /* Subtle Blue as primary button color */
+    background-color: var(--color-7);  /* Subtle Blue as primary button color */
     border: none;
-    border-radius: 5px;
+    border-radius: 16px;
     color: var(--color-1);            /* Lightest Gray for text */
     cursor: pointer;
     font-size: 16px;
@@ -52,7 +52,7 @@ body {
 }
 
 .button:hover {
-    background-color: var(--color-7);  /* Fading Purple for hover effect */
+    background-color: var(--color-6);  /* Fading Purple for hover effect */
     transform: translateY(-2px);       /* Slight lift on hover */
 }
 

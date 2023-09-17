@@ -1,7 +1,7 @@
 .mint-container {
   padding: 16px;
   background-color: var(--color-8);
-  border-radius: 15px;
+  border-radius: 16px;
   max-width: 512px;
   margin: 64px auto; /* Center the card horizontally and add margin on top */
   text-align: center;
@@ -53,13 +53,13 @@
 .custom-active {
   color: #000000;
   background-color: var(--white);
-  border-radius: 6px;
+  border-radius: 16px;
 }
 
 .custom-inactive {
   color: var(--white);
   background-color: transparent;
-  border-radius: 6px;
+  border-radius: 16px;
 }
 
 .certificate-container {
@@ -128,7 +128,7 @@ background: var(--color-8);
 color: var(--color-3);
 
 padding: 20px;
-border-radius: 8px;
+border-radius: 16px;
 max-width: 500px;
 width: 90%;
 z-index: 9999;
