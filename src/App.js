@@ -10,7 +10,6 @@ import Profile from "./components/Profile/Profile.js";
 import Redeem from "./components/Redeem/Redeem.js";
 import Staking from "./components/Staking/Staking.js";
 import FullCard from "./components/Collection/FullCard.js";
-import Menu from "./components/Menu/Menu.js";
 import UserInfo from "./components/UserInfo/UserInfo.js";
 
 const App = () => {
