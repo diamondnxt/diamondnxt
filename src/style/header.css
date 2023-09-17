@@ -256,9 +256,9 @@ header {
 .modalOverlay {
   position: absolute; /* Absolute positioning */
   bottom: 100%; /* Aligns the bottom of the modal with the top of the menuBar */
-  left: 0;
-  width: 100%;
-  height: 400px;
+  min-width: 150px;
+  width: fit-content;
+  height:fit-content;
   background: var(--color-7);
   opacity: 0.97;
   display: flex;
@@ -266,8 +266,8 @@ header {
   justify-content: center;
   padding: 20px 0; /* Add some padding at the top and bottom */
   border-radius: 16px;
-  border-top-right-radius: 64px;
-  border-top-left-radius: 64px;
+  border-top-right-radius: 24px;
+  border-top-left-radius: 24px;
 }
 
 .modalContent {
