@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import matic from './../../images/matic.png';
 import eth from './../../images/eth.png';
+import logo from './../../images/logo.svg';
 import NetworkSelect from "../Network/NetworkSelect";
 import Menu from "../Menu/Menu";
 import "./../../style/header.css";
@@ -166,14 +167,18 @@ const UserInfo = (props) => {
               <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6ZM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2Z" />
             </svg>
           </div>
-          <div className="balances-label">Balances:</div>
           <div className="balances-value">
             <div>
               <b>
-                {props.dnxtBalance > 0 ? parseFloat(props.dnxtBalance).toFixed(3) : 0} <span>DNXT</span>
+                {props.dnxtBalance > 0 ? parseFloat(props.dnxtBalance).toFixed(3) : 0}
+                <span>
+                  <img src={logo} alt="DNXT logo" style={{ verticalAlign: 'middle', display: 'inline-block' }} />
+                  DNXT
+                </span>
               </b>
             </div>
           </div>
+
         </div>
         <div className="network">
           <NetworkSelect {...props} selectedNetwork={selectedNetwork} />
