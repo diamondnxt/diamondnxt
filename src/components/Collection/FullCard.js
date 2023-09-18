@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams, Link } from 'react-router-dom';
-import Attributes from "./Attributes";
 
 const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
     let { id } = useParams();
@@ -25,6 +24,7 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
                         if (["Cut", "Clarity", "Color", "Carat Weight"].includes(value.trait_type)) {
                             return <AttributeItem name={value.trait_type} value={value.value} key={index} />;
                         }
+                        return null;
                     })}
                 </div>
                 
@@ -33,6 +33,7 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
                         if (["Symmetry", "Fluorescence", "Polish", "Shape"].includes(value.trait_type)) {
                             return <AttributeItem name={value.trait_type} value={value.value} key={index} />;
                         }
+                        return null;
                     })}
                 </div>
                 
@@ -41,6 +42,7 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
                         if (["Certificate Issuer", "Certificate Number"].includes(value.trait_type)) {
                             return <AttributeItem name={value.trait_type} value={value.value} key={index} />;
                         }
+                        return null;
                     })}
                 </div>
             </div>
@@ -66,15 +68,8 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
                             </svg>
                         </Link>
                     </div>
-                </div>
-                <div className="card-big--attributes">
-                    <h1 className="title"><span>Diamond #{id}</span></h1>
-                    {attributesbox()}
-                </div>
-                <div className="card-big--links">
-
-                    <a
-                        href={buyLink}
+                    <div className="card-big--links">
+                    <a href={buyLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="button"
@@ -83,6 +78,12 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
                     </a>
                     <Link className="button" to="/explorer">EXPLORE</Link>
                 </div>
+                </div>
+                <div className="card-big--attributes">
+                    <h1 className="title"><span>Diamond #{id}</span></h1>
+                    {attributesbox()}
+                </div>
+
             </div>
         </>
     );

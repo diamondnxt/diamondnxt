@@ -10,8 +10,12 @@ const NetworkSelect = ({ web3, networks, networkId, selectedNetwork, setSelected
   const [isSelectOpen, setIsSelectOpen] = useState(false);
 
 
-  const toggleSelect = () => {
-    setIsSelectOpen(!isSelectOpen);
+  const handleNetworkClick = () => {
+    if (!connected) {
+      connectWallet();
+    } else {
+      setIsSelectOpen(prev => !prev);
+    }
   };
 
   async function networkData() {
@@ -44,7 +48,7 @@ const NetworkSelect = ({ web3, networks, networkId, selectedNetwork, setSelected
 
   return (
 
-      <><div className="network" onClick={() => toggleSelect()}>
+      <><div className="network" onClick={() => handleNetworkClick()}>
       {connected ? (
         <>
           <div className="status-connected"></div>

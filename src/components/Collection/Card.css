@@ -155,9 +155,10 @@ button[disabled]{
 .card-big--links {
   flex: 1; /* This will allow the links section to take up 1/3 of the space */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 24px;
 }
 
 .card--image, .card-big--image {

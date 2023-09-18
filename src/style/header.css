@@ -265,7 +265,7 @@ header {
   flex-direction: column; /* For better control over modal content layout */
   justify-content: center;
   padding: 20px 0; /* Add some padding at the top and bottom */
-  border-radius: 0px;
+  border-radius: 8px;
   border-top-right-radius: 24px;
   border-top-left-radius: 24px;
 }
