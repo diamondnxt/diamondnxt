@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    padding-top: 50px; /* Padding equal to the height of the tabs, so content isn't overlapped */
+}
+
+.filter-container {
+    flex: 1;
+    position: fixed;
+    left: 0;
+    top: 50px; /* Start below the tabs */
+    bottom: 0;
+    max-width: 200px;
+    overflow-y: auto;
+    color: var(--color-4);
+    background-color: var(--color-9);
+    padding: 20px;
+    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;  /* Adjust the gap to your liking */
+}
+
+.tabs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-9);
+    padding: 10px;
+    z-index: 1000; /* to ensure it stays on top */
+}
+
+.explorer-container {
+    flex: 3;
+    margin-left: 210px; /* Filter container width + padding/shadow */
+}
+
+
+.trait-toggle {
+    cursor: pointer;
+}
+
+.trait-detail {
+    margin-left: 20px;
+}
+
+.list-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.list-item {
+    display: grid;
+    grid-template-columns: 
+        minmax(100px, 1fr)  /* Image cell */
+        2fr  /* Name cell */
+        1fr 1fr 1fr 1fr 1fr 2fr;  /* Other attribute cells */
+    gap: 10px;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+
+.diamond-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.list-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.diamond-info {
+    flex: 1;
+    display: grid;
+    gap: 5px;  /* Space between each line of info */
+}
+
+.diamond-info h5 {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.tabs-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tab {
+    display: flex;
+    align-items: center;  /* vertically aligns items in the center */
+    justify-content: center;  /* horizontally aligns items in the center */
+    gap: 5px;  /* spacing between SVG and text */
+    padding: 10px 20px;  /* adjust padding as needed */
+    border: none;
+    background-color: #eee;  /* sample background color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #ddd;  /* adjust hover color as needed */
+}
+
+.tab-icon {
+    width: 24px;  /* adjust SVG size as needed */
+    height: 24px;
+}
+
+
+.tab.active {
+    background-color: var(--color-4);
+    color: var(--color-9);
+}
+
+.tab svg {
+    width: 24px;
+    height: 24px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust 250px to your preferred width */
+    gap: 20px; /* Space between grid items */
+    padding: 20px;
+}
+
+.grid-item {
+    display: grid;
+    gap: 5px; /* Space between lines inside an item */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+
+/* Additional styles for the item attributes for aesthetics */
+.item-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Adjust other styles for 'item-price', 'item-offer', etc. as needed */
