@@ -5,7 +5,7 @@ const Menu = () => {
   const menuItems = [
     { name: 'Explorer', path: '/explorer' },
     { name: 'Profile', path: '/profile' },
-    { name: 'Mint', path: '/dapp' },
+    { name: 'Dapp', path: '/dapp' },
     { name: 'Redeem', path: '/redeem' },
     { name: 'Staking', path: '/staking' },
     { name: 'Docs', path: 'https://github.com/diamondnxt', isExternal: true },

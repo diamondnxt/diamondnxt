@@ -36,6 +36,7 @@ const FilterOptions = ({ data, onFilter }) => {
                         Object.keys(attributeCounts[traitType]).map(value => (
                             <div key={value} className="trait-detail">
                                 <input 
+                                className='input'
                                     type="checkbox" 
                                     onChange={() => handleCheckboxChange(traitType, value)} 
                                 />

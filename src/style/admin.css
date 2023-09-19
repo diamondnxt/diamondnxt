@@ -1,12 +1,35 @@
 .mint-container {
   padding: 16px;
   background-color: var(--color-8);
+  color: var(--color-2);
   border-radius: 16px;
   max-width: 512px;
   margin: 64px auto; /* Center the card horizontally and add margin on top */
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.request-container {
+  padding: 16px;
+  background-color: var(--color-8);
+  color: var(--color-2);
+  border-radius: 16px;
+  max-width: 512px;
+  margin: 64px auto; /* Center the card horizontally and add margin on top */
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* A bit of spacing between list items */
+.request-container ul li {
+  margin-bottom: 10px;
+  text-decoration: none;
+    list-style-type: none; /* This removes the bullet points */
+    padding: 0; /* This removes any default padding */
+    margin: 0; /* This removes any default margin */
+  }
+  
+
 
 .certificate-container,
 .listbox-container {

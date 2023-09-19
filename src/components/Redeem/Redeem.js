@@ -15,6 +15,22 @@ const Redeem = ({
   const [showModal, setShowModal] = useState(false); // State for displaying the modal
   const [isLoading, setIsLoading] = useState(true);
 
+  const isApprovedForAll = async () => {
+    const dnftContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
+    return await dnftContract.methods.isApprovedForAll(selectedAddress, addresses.redeem).call();
+};
+
+const requestApproval = async () => {
+  try {
+      const dnftContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
+      await dnftContract.methods.setApprovalForAll(addresses.redeem, true).send({ from: selectedAddress });
+      return true;
+  } catch (error) {
+      console.error("Error during approval request:", error);
+      alert("Failed to grant approval. Check the console for details.");
+      return false;
+  }
+};
 
 
   const closeModal = () => {
@@ -35,6 +51,38 @@ const Redeem = ({
       </div>
     );
   };
+
+  const redeemSelectedDiamonds = async () => {
+    try {
+        // Check if already approved
+        const approved = await isApprovedForAll();
+
+        if (!approved) {
+            const hasApproved = await requestApproval();
+            if (!hasApproved) return; // Exit if approval was not granted
+        }
+
+        const redeemContract = new web3.eth.Contract(ABIS.ABIREDEEM, addresses.redeem);
+        const txPromises = [];
+
+        for (const tokenId of selectedDiamonds) {
+            const tx = redeemContract.methods.redeem(addresses.dnft, tokenId).send({ from: selectedAddress });
+            txPromises.push(tx);
+        }
+
+        await Promise.all(txPromises);
+        alert("Redemption process started for selected diamonds!");
+
+        // Update the UI by removing redeemed diamonds from the list
+        setNftBalances(nftBalances.filter(nft => !selectedDiamonds.includes(nft.tokenId)));
+        setSelectedDiamonds([]);
+        closeModal();
+    } catch (error) {
+        console.error("Error during redemption:", error);
+        alert("Redemption failed. Check the console for details.");
+    }
+};
+
   
 
   const handleCheckboxChange = (tokenId) => {
@@ -78,9 +126,6 @@ const Redeem = ({
     }
   }, [connected, selectedAddress, web3]);
 
-  const redeemSelectedDiamonds = async () => {
-    console.log("Redeeming diamonds: "+selectedDiamonds)
-  };
   
 
   return (

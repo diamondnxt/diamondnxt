@@ -5,8 +5,7 @@ import * as addresses from "./../../constants/addresses";
 import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
 import { Listbox, Transition } from '@headlessui/react';
 import ImageUploader from "../ImageUploader/ImageUploader";
-import "./../../style/mint.css"
-import Logo from "./../../images/logo.svg";
+import "./../../style/admin.css"
 
 
 const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
@@ -156,8 +155,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
       window.ethereum.chainId === "0x89" ? (
         <div className="mint-container">
         <h1 className="label">
-          <img src={Logo} width="64px" alt="Logo" />
-          Diamond NXT Mint Dashboard
+          Mint Dashboard
         </h1>  
           <div className="listbox-container">
             <label className="label">Cut:</label>
