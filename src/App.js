@@ -17,7 +17,7 @@ const App = () => {
         <Router>
             <Routes>
                 <Route path="/explorer/:id" element={<FullCard {...walletProps} />} />
-                <Route path="/explorer" element={<Explorer />} />
+                <Route path="/explorer" element={<Explorer {...walletProps}/>} />
                 <Route path="/dapp" element={<Dapp {...walletProps} />} />
                 <Route path="/profile" element={<Profile {...walletProps} />} />
                 <Route path="/redeem" element={<Redeem {...walletProps} />} />

@@ -13,7 +13,7 @@ body {
     flex: 1;
     position: fixed;
     left: 0;
-    top: 50px; /* Start below the tabs */
+    top: 64px; /* Start below the tabs */
     bottom: 0;
     max-width: 200px;
     overflow-y: auto;
@@ -44,6 +44,7 @@ body {
 .explorer-container {
     flex: 3;
     margin-left: 210px; /* Filter container width + padding/shadow */
+    margin-top: 64px;
 }
 
 
