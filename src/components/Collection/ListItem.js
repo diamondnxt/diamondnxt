@@ -1,17 +1,25 @@
 const ListItem = ({ data }) => {
-    return (
-        <div className="list-item">
-            <div className="list-cell">
-                <img src={data.image} alt={data.name} className="diamond-image" />
-            </div>
-            <div className="list-cell">{data.name}</div>
-            <div className="list-cell">${data.currentPrice}</div>
-            {data.attributes.map((attr, idx) => (
-                <div className="list-cell" key={idx}>{attr.value}</div>
-            ))}
-        </div>
+    // Destructure the data to extract only the required fields
+    const { image, name, currentPrice, attributes } = data;
+  
+    // Filter attributes to get only cut, color, clarity and caratWeight
+    const filteredAttributes = attributes.filter(attr =>
+      ['Cut', 'Color', 'Clarity', 'Carat Weight'].includes(attr.trait_type)
     );
-}
-
-
-export default ListItem;
+  
+    return (
+      <div className="list-item">
+        <div className="list-cell">
+          <img src={image} alt={name} className="diamond-image" />
+        </div>
+        <div className="list-cell">{name}</div>
+        <div className="list-cell">${currentPrice}0</div>
+        {filteredAttributes.map((attr, idx) => (
+          <div className="list-cell" key={idx}>{attr.value}</div>
+        ))}
+      </div>
+    );
+  }
+  
+  export default ListItem;
+  

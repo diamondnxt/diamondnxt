@@ -64,17 +64,23 @@ body {
 }
 
 .list-item {
-    display: grid;
+    display: flex;
     grid-template-columns: 
         minmax(100px, 1fr)  /* Image cell */
         2fr  /* Name cell */
         1fr 1fr 1fr 1fr 1fr 2fr;  /* Other attribute cells */
     gap: 10px;
     align-items: center;
+    justify-content: space-between;
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 4px;
     background-color: #f8f8f8;
+}
+
+/* Remove the right border for the last cell */
+.list-item .list-cell:last-child {
+    border-right: none;
 }
 
 .diamond-image {
@@ -88,6 +94,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    border-right: 1px solid #e0e0e0; /* This creates the separator */
+    flex: 1; /* This ensures equal width for all cells */
 }
 
 
@@ -166,3 +175,22 @@ body {
 }
 
 /* Adjust other styles for 'item-price', 'item-offer', etc. as needed */
+
+.horizontal-slider {
+    width: 100%;
+    height: 25px;
+}
+
+.thumb {
+    height: 25px;
+    width: 25px;
+    background-color: var(--color-6);
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.track {
+    top: 10px;
+    bottom: 10px;
+    background: #ddd;
+}

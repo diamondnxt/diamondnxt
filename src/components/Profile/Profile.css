@@ -60,5 +60,6 @@
     max-width: 100%; /* Limit image width to its container */
     max-height: 150px; /* Set a maximum height for the images */
     object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-radius: 16px;
   }
   
