@@ -1,5 +1,5 @@
 {
-  "name": "Vitale 1913 #15",
+  "name": "Vitale #15",
   "description": "Heritage Collection: Combining tradition with technology",
   "image": "https://dnxt.app/images/15.jpg",
   "animation_url": "https://dnxt.app/videos/15.mp4",
@@ -7,7 +7,7 @@
   "attributes": [
     {
       "trait_type": "Cut",
-      "value": "Very Good"
+      "value": ""
     },
     {
       "trait_type": "Clarity",
@@ -15,7 +15,7 @@
     },
     {
       "trait_type": "Color",
-      "value": "Fancy Deep Blue"
+      "value": "Natural Fancy Deep Blue Even"
     },
     {
       "trait_type": "Carat Weight",

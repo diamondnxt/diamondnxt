@@ -1,0 +1,49 @@
+{
+    "name": "Vitale #38",
+    "description": "Heritage Collection: Combining tradition with technology",
+    "image": "https://dnxt.app/images/38.jpg",
+    "animation_url": "https://dnxt.app/videos/38.mp4",
+    "edition": 38,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": ""
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "SI1"
+      },
+      {
+        "trait_type": "Color",
+        "value": "Natural Fancy Purplish Pink Even"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": 1.01
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Heart Modified Brilliant"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "None"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Certificate Issuer",
+        "value": "GIA"
+      },
+      {
+        "trait_type": "Certificate Number",
+        "value": "5191363976"
+      }
+    ]
+  }
