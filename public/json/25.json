@@ -1,5 +1,5 @@
 {
-    "name": "Vitale 1913 #25",
+    "name": "Vitale #25",
     "description": "Heritage Collection: Combining tradition with technology",
     "image": "https://dnxt.app/images/25.jpg",
     "animation_url": "https://dnxt.app/videos/25.mp4",
@@ -7,35 +7,35 @@
     "attributes": [
       {
         "trait_type": "Cut",
-        "value": "Very Good"
+        "value": ""
       },
       {
         "trait_type": "Clarity",
-        "value": "IF"
+        "value": ""
       },
       {
         "trait_type": "Color",
-        "value": "E"
+        "value": "Fancy Grayish Pinkish Purple Even"
       },
       {
         "trait_type": "Carat Weight",
-        "value": 4.02
+        "value": 1.03
       },
       {
         "trait_type": "Shape",
-        "value": "Pear Modified Brilliant"
+        "value": "Oval Brilliant"
       },
       {
         "trait_type": "Symmetry",
-        "value": "Good"
+        "value": ""
       },
       {
         "trait_type": "Fluorescence",
-        "value": "Medium Blue"
+        "value": ""
       },
       {
         "trait_type": "Polish",
-        "value": "Very Good"
+        "value": ""
       },
       {
         "trait_type": "Certificate Issuer",
@@ -43,7 +43,7 @@
       },
       {
         "trait_type": "Certificate Number",
-        "value": "5141303335"
+        "value": "14732536"
       }
     ]
   }

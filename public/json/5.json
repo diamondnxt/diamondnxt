@@ -1,5 +1,5 @@
 {
-  "name": "Vitale 1913 #5",
+  "name": "Vitale #5",
   "description": "Heritage Collection: Combining tradition with technology",
   "image": "https://dnxt.app/images/5.jpg",
   "animation_url": "https://dnxt.app/videos/5.mp4",
@@ -7,23 +7,23 @@
   "attributes": [
     {
       "trait_type": "Cut",
-      "value": "Very Good"
+      "value": ""
     },
     {
       "trait_type": "Clarity",
-      "value": "VVS1"
+      "value": "VS1"
     },
     {
       "trait_type": "Color",
-      "value": "D"
+      "value": "F"
     },
     {
       "trait_type": "Carat Weight",
-      "value": 1.01
+      "value": 1.00
     },
     {
       "trait_type": "Shape",
-      "value": "Oval Brilliant"
+      "value": "Round-Cornered Rectangular Modified Brilliant"
     },
     {
       "trait_type": "Symmetry",
@@ -35,7 +35,7 @@
     },
     {
       "trait_type": "Polish",
-      "value": "Very Good"
+      "value": "Excellent"
     },
     {
       "trait_type": "Certificate Issuer",
@@ -43,7 +43,7 @@
     },
     {
       "trait_type": "Certificate Number",
-      "value": "2167223188"
+      "value": "2217068577"
     }
   ]
 }

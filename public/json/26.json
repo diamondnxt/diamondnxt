@@ -1,0 +1,49 @@
+{
+    "name": "Vitale #27",
+    "description": "Heritage Collection: Combining tradition with technology",
+    "image": "https://dnxt.app/images/26.jpg",
+    "animation_url": "https://dnxt.app/videos/26.mp4",
+    "edition": 26,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "SI2"
+      },
+      {
+        "trait_type": "Color",
+        "value": "Natural Fancy Deep Orange"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": 1.16
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Oval"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": "Slight"
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Certificate Issuer",
+        "value": "IGI"
+      },
+      {
+        "trait_type": "Certificate Number",
+        "value": "M1H52734"
+      }
+    ]
+  }

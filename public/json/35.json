@@ -1,0 +1,49 @@
+{
+    "name": "Vitale #35",
+    "description": "Heritage Collection: Combining tradition with technology",
+    "image": "https://dnxt.app/images/30.jpg",
+    "animation_url": "https://dnxt.app/videos/30.mp4",
+    "edition": 30,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "SI1"
+      },
+      {
+        "trait_type": "Color",
+        "value": "Fancy Yellow Natural Color"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": 1.03
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Brilliant"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Very Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": ""
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Excellent"
+      },
+      {
+        "trait_type": "Certificate Issuer",
+        "value": "HRD"
+      },
+      {
+        "trait_type": "Certificate Number",
+        "value": "16014153006"
+      }
+    ]
+  }
