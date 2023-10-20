@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import * as ABIS from "./../../constants/ABIS";
 import * as addresses from "./../../constants/addresses";
@@ -20,6 +20,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
   const [selectedLab, setSelectedLab] = useState(null);
   const [certificateNumber, setCertificateNumber] = useState();
   const [caratWeight, setCaratWeight] = useState(null);
+  const [next, setNext] = useState(null);
 
   const [images, setImages] = useState([]);
 
@@ -36,6 +37,49 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
   const polishes = ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor'];
   const labs = ['GIA', 'AGS', 'HRD', 'IGI', 'EGL', 'Other'];
 
+  const [jsonModalVisible, setJsonModalVisible] = useState(false);
+  const [generatedJson, setGeneratedJson] = useState(null);
+
+  const [tokenId, setTokenId] = useState(39); // Example token ID
+  
+
+
+  const generateJSON = () => {
+    const jsonString = JSON.stringify(
+      {
+        name: `Vitale #${tokenId}`,
+        description: "Heritage Collection: Combining tradition with technology",
+        image: `https://dnxt.app/images/${tokenId}.jpg`,
+        animation_url: `https://dnxt.app/videos/${tokenId}.mp4`,
+        edition: tokenId,
+        attributes: [
+          { trait_type: "Cut", value: selectedCut },
+          { trait_type: "Clarity", value: selectedClarity },
+          { trait_type: "Color", value: selectedColor },
+          { trait_type: "Shape", value: selectedShape },
+          { trait_type: "Symmetry", value: selectedSymmetry },
+          { trait_type: "Fluorescence", value: selectedFluorescence },
+          { trait_type: "Polish", value: selectedPolish },
+          { trait_type: "Lab", value: selectedLab },
+          { trait_type: "Certificate Number", value: certificateNumber },
+          { trait_type: "Carat Weight", value: Number(caratWeight) },
+        ],
+      },
+      null,
+      2
+    );
+
+    setGeneratedJson(jsonString);
+    setJsonModalVisible(true);
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(function () {
+      console.log('Copied to clipboard successfully!');
+    }, function (err) {
+      console.error('Unable to copy', err);
+    });
+  }
 
   const handleCertificateChange = (event) => {
     setCertificateNumber(event.target.value);
@@ -43,7 +87,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
 
   const confirmMint = () => {
     fetchJson()
-    console.log("images.length: "+images.length)
+    console.log("images.length: " + images.length)
     if (images.length > 0) {
       uploadToServer(images[0]["data_url"]);
     }
@@ -111,7 +155,22 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
     }
   };
 
+  useEffect(() => {
+    if (connected) { 
+      const getNextTokenIdFromContract = async () => {
+        const tokenContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
+        const current = await tokenContract.methods.totalSupply().call();
+        const next = Number(current) + 1;
+        console.log(next+'next')
+        setNext(next);
+        setTokenId(next)
+      };
+      getNextTokenIdFromContract();
+    }
+  }, [connected, web3, ]);
 
+
+  
 
   const handleCaratWeightChange = (e) => {
     let input = e.target.value;
@@ -123,7 +182,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
     }
   }
 
-  
+
   const uploadToServer = async (dataURL) => {
     try {
       const response = await axios.post('https://dnxt.app/mint', {
@@ -134,7 +193,7 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
       console.error("Error uploading image:", error);
     }
   };
-  
+
 
 
 
@@ -142,21 +201,26 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
     fetch('https://raw.githubusercontent.com/diamondnxt/diamondnxt/gh-pages/json/3.json')
       .then(response => response.json())
       .then(data => {
-          console.log(data.attributes);
-          // Do something with your data
+        console.log(data.attributes);
+        // Do something with your data
       })
       .catch(error => console.error('Error fetching the file:', error));
   }
-  
+
 
 
   return (
     connected ? (
       window.ethereum.chainId === "0x89" ? (
         <div className="mint-container">
-        <h1 className="label">
-          Mint Dashboard
-        </h1>  
+          <h1 className="label">
+            NFT Dashboard
+          </h1>
+        
+          <div className="listbox-container">
+            <label className="label">Next Token ID: {next}</label>
+          </div>
+
           <div className="listbox-container">
             <label className="label">Cut:</label>
             <Listbox value={selectedCut} onChange={setSelectedCut}>
@@ -408,7 +472,8 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
             <div className="modal">
               <div className="modal-overlay"></div>
               <div className="modal-content">
-                <h2>Confirm Mint</h2>
+                <h2>Actions</h2>
+                <p>ID: <span className="value">{tokenId}</span></p>
                 <p>Cut: <span className="value">{selectedCut}</span></p>
                 <p>Clarity: <span className="value">{selectedClarity}</span></p>
                 <p>Color: <span className="value">{selectedColor}</span></p>
@@ -420,7 +485,26 @@ const Mint = ({ web3, connected, connectWallet, selectedAddress }) => {
                 <p>Certificate Number: <span className="value">{certificateNumber}</span></p>
                 <p>Carat Weight: <span className="value">{caratWeight}</span></p>
                 {errorMessage && <label className="missingParameters">{errorMessage}</label>}
-                <button className="button" onClick={() => confirmMint()}>Confirm</button>
+                <button className="button" onClick={() => confirmMint()}>Mint</button>
+                <button className="button" onClick={() => generateJSON()}>Generate JSON</button>
+                {jsonModalVisible && (
+                  <div className="modal">
+                    <div className="modal-overlay" onClick={() => setJsonModalVisible(false)}></div>
+                    <div className="modal-content">
+                      <h2>Generated JSON</h2>
+                      <textarea value={generatedJson} readOnly rows={10} cols={60} />
+                      <button
+                        className="button"
+                        onClick={() => {
+                          copyToClipboard(generatedJson);
+                        }}
+                      >
+                        Copy JSON
+                      </button>
+                    </div>
+                  </div>
+                )}
+                <button className="button" onClick={() => confirmMint()}>Estimate Price</button>
                 <button className="button" onClick={() => setShowModal(false)}>Cancel</button>
               </div>
             </div>

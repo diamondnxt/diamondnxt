@@ -52,7 +52,7 @@ const Explorer = ({ connected, web3, connectWallet }) => {
 
                         // Combine the token data with the fetched data
                         const combinedData = {
-                            tokenId,
+                            id: tokenId,
                             ...nftData
                         };
                         tempNftBalances.push(combinedData);
