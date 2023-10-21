@@ -3,6 +3,8 @@ import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
 import "./../../style/Redeem.css";
 import * as ABIS from "./../../constants/ABIS";
 import * as addresses from "./../../constants/addresses";
+import DeliveryOptions from "./DeliveryOptions.js";
+import TermsModal from "./TermsModal.js";
 
 const Redeem = ({
   web3,
@@ -15,22 +17,74 @@ const Redeem = ({
   const [showModal, setShowModal] = useState(false); // State for displaying the modal
   const [isLoading, setIsLoading] = useState(true);
 
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const nextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const previousStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+  const renderContent = () => {
+    switch (currentStep) {
+      case 1:
+        return <TermsModal
+          showModal={showModal}
+          showTermsModal={showTermsModal}
+          setShowTermsModal={setShowTermsModal}
+          nextStep={nextStep} />;
+      case 2:
+        return (
+          <>
+            {showModal && renderDiamondsToRedeem()}
+            {showModal && <DeliveryOptions nextStep={nextStep} />}
+          </>
+        );
+      case 3:
+        return (
+          <>
+            {showModal && (
+              <div>
+                <button className="button" onClick={previousStep}>
+                  Back
+                </button>
+                <button className="button" onClick={redeemSelectedDiamonds}>
+                  Confirm
+                </button>
+                <button className="button" onClick={closeModal}>
+                  Cancel
+                </button>
+              </div>
+            )}
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+
+
+
   const isApprovedForAll = async () => {
     const dnftContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
     return await dnftContract.methods.isApprovedForAll(selectedAddress, addresses.redeem).call();
-};
+  };
 
-const requestApproval = async () => {
-  try {
+  const requestApproval = async () => {
+    try {
       const dnftContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
       await dnftContract.methods.setApprovalForAll(addresses.redeem, true).send({ from: selectedAddress });
       return true;
-  } catch (error) {
+    } catch (error) {
       console.error("Error during approval request:", error);
       alert("Failed to grant approval. Check the console for details.");
       return false;
-  }
-};
+    }
+  };
 
 
   const closeModal = () => {
@@ -54,36 +108,36 @@ const requestApproval = async () => {
 
   const redeemSelectedDiamonds = async () => {
     try {
-        // Check if already approved
-        const approved = await isApprovedForAll();
+      // Check if already approved
+      const approved = await isApprovedForAll();
 
-        if (!approved) {
-            const hasApproved = await requestApproval();
-            if (!hasApproved) return; // Exit if approval was not granted
-        }
+      if (!approved) {
+        const hasApproved = await requestApproval();
+        if (!hasApproved) return; // Exit if approval was not granted
+      }
 
-        const redeemContract = new web3.eth.Contract(ABIS.ABIREDEEM, addresses.redeem);
-        const txPromises = [];
+      const redeemContract = new web3.eth.Contract(ABIS.ABIREDEEM, addresses.redeem);
+      const txPromises = [];
 
-        for (const tokenId of selectedDiamonds) {
-            const tx = redeemContract.methods.redeem(addresses.dnft, tokenId).send({ from: selectedAddress });
-            txPromises.push(tx);
-        }
+      for (const tokenId of selectedDiamonds) {
+        const tx = redeemContract.methods.redeem(addresses.dnft, tokenId).send({ from: selectedAddress });
+        txPromises.push(tx);
+      }
 
-        await Promise.all(txPromises);
-        alert("Redemption process started for selected diamonds!");
+      await Promise.all(txPromises);
+      alert("Redemption process started for selected diamonds!");
 
-        // Update the UI by removing redeemed diamonds from the list
-        setNftBalances(nftBalances.filter(nft => !selectedDiamonds.includes(nft.tokenId)));
-        setSelectedDiamonds([]);
-        closeModal();
+      // Update the UI by removing redeemed diamonds from the list
+      setNftBalances(nftBalances.filter(nft => !selectedDiamonds.includes(nft.tokenId)));
+      setSelectedDiamonds([]);
+      closeModal();
     } catch (error) {
-        console.error("Error during redemption:", error);
-        alert("Redemption failed. Check the console for details.");
+      console.error("Error during redemption:", error);
+      alert("Redemption failed. Check the console for details.");
     }
-};
+  };
 
-  
+
 
   const handleCheckboxChange = (tokenId) => {
     if (selectedDiamonds.includes(tokenId)) {
@@ -99,7 +153,7 @@ const requestApproval = async () => {
   // Fetch NFT balances
   useEffect(() => {
     if (connected) {
-    
+
       const getNftBalances = async () => {
         setIsLoading(true);
         const dnftContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
@@ -108,14 +162,14 @@ const requestApproval = async () => {
 
         for (let i = 0; i < totalNftBalance; i++) {
           const tokenId = await dnftContract.methods.tokenOfOwnerByIndex(selectedAddress, i).call();
-    // Generate the image URL based on the tokenId
-    const imageUrl = `https://dnxt.app/images/${tokenId}.jpg`;
-    // Add this information to nftDetails object.
-    const nftDetails = {
-      tokenId,
-      imageUrl,
-    };
-    nftBalances.push(nftDetails);
+          // Generate the image URL based on the tokenId
+          const imageUrl = `https://dnxt.app/images/${tokenId}.jpg`;
+          // Add this information to nftDetails object.
+          const nftDetails = {
+            tokenId,
+            imageUrl,
+          };
+          nftBalances.push(nftDetails);
         }
 
         setNftBalances(nftBalances);
@@ -126,7 +180,6 @@ const requestApproval = async () => {
     }
   }, [connected, selectedAddress, web3]);
 
-  
 
   return (
     connected ? (
@@ -134,57 +187,47 @@ const requestApproval = async () => {
         <div className="redeem-container">
           <h2 className="title">Redeem Your NFTs</h2>
           {isLoading ? (
-          <p className="subtitle">Loading...</p>
-        ) : (
-          nftBalances.length > 0 ? (
-            <div className="nft-list">
-              {nftBalances.map((nft, index) => (
-                <div key={index} className="nft-item">
-                  <input
-                    type="checkbox"
-                    onChange={() => handleCheckboxChange(nft.tokenId)}
-                    checked={selectedDiamonds.includes(nft.tokenId)}
-                  />
-                  <a
-                    href={`https://dnxt.app/#/explorer/${nft.tokenId}`} // Replace with the actual explorer URL
-                    target="_blank" // Open the link in a new tab/window
-                    rel="noopener noreferrer" // Recommended for security reasons
-                  >
-                    <label className="subtitle">Diamond ID: {nft.tokenId}</label>
-                    <img src={nft.imageUrl} alt={`Diamond #${nft.tokenId}`} />
-                  </a>
-                  {/* Add more NFT details */}
-                </div>
-              ))}
-            </div>
+            <p className="subtitle">Loading...</p>
           ) : (
-            <p className="subtitle">No NFTs to redeem.</p>
-          )
-        )}
+            nftBalances.length > 0 ? (
+              <div className="nft-list">
+                {nftBalances.map((nft, index) => (
+                  <div key={index} className="nft-item">
+                    <input
+                      type="checkbox"
+                      onChange={() => handleCheckboxChange(nft.tokenId)}
+                      checked={selectedDiamonds.includes(nft.tokenId)}
+                    />
+                    <a
+                      href={`https://dnxt.app/#/explorer/${nft.tokenId}`} // Replace with the actual explorer URL
+                      target="_blank" // Open the link in a new tab/window
+                      rel="noopener noreferrer" // Recommended for security reasons
+                    >
+                      <label className="subtitle">Diamond ID: {nft.tokenId}</label>
+                      <img src={nft.imageUrl} alt={`Diamond #${nft.tokenId}`} />
+                    </a>
+                    {/* Add more NFT details */}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="subtitle">No NFTs to redeem.</p>
+            )
+          )}
 
 
-<button
-  className="button"
-  onClick={() => setShowModal(true)}
->
-  Redeem Selected
-</button>
-{showModal && (
+          <button className="button" onClick={() => { setShowModal(true); setShowTermsModal(true); }}>
+            Redeem Selected
+          </button>
+          {showModal && (
             <div className="modal">
               <div className="modal-overlay" onClick={closeModal}></div>
               <div className="modal-content">
-                <h2>Confirm Redeem</h2>
-                {renderDiamondsToRedeem()}
-                {/* Additional information can be displayed here */}
-                <button className="button" onClick={redeemSelectedDiamonds}>
-                  Confirm
-                </button>
-                <button className="button" onClick={closeModal}>
-                  Cancel
-                </button>
+                {renderContent()}
               </div>
             </div>
           )}
+
 
         </div>
       ) : (
