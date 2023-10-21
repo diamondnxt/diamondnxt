@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
 import { SwitchToPolygon } from "../Network/SwitchNetwork.js";
-import KYC from "../KYC/KYC.js"
-import Logo from "./../../images/logo.svg";
-import "./Profile.css";
 import * as ABIS from "../../constants/ABIS";
 import * as addresses from "../../constants/addresses";
+import UserStatus from "./UserStatus.js";
+import Portfolio from "./Portfolio.js";
+
+const commonBoxStyles = {
+  bg: "var(--color-8)",
+  borderRadius: "16px",
+  p: "16px",
+};
+
 
 const Profile = ({
   web3,
@@ -15,38 +22,7 @@ const Profile = ({
   dnxtBalance,
 }) => {
   const [nftBalances, setNftBalances] = useState([]);
-  const [isWhitelisted, setIsWhitelisted] = useState(false);
-  const [isBlacklisted, setIsBlacklisted] = useState(false);
-  const [isKycStarted, setIsKycStarted] = useState(false); // Track if KYC process has started
-
-  const closeKYCModal = () => {
-    setIsKycStarted(false);
-  };
-
-  const startKYC = async () => {
-    console.log("Starting KYC: ")
-  };
-
-  useEffect(() => {
-    if (connected) {
-      const checkWhitelistedStatus = async () => {
-        const whitelistContract = new web3.eth.Contract(ABIS.ABIWHITELIST, addresses.whitelist);
-        const isWhitelisted = await whitelistContract.methods.whitelisted(selectedAddress).call();
-        setIsWhitelisted(isWhitelisted);
-      };
-  
-      const checkBlacklistedStatus = async () => {
-        const whitelistContract = new web3.eth.Contract(ABIS.ABIWHITELIST, addresses.whitelist);
-        const isBlacklisted = await whitelistContract.methods.blacklisted(selectedAddress).call();
-        setIsBlacklisted(isBlacklisted);
-      };
-  
-      // Call the functions to check whitelist and blacklist status
-      checkWhitelistedStatus();
-      checkBlacklistedStatus();
-    }
-  }, [connected, selectedAddress, web3]);
-  
+  const [nftNumberBalance, setNftNumberBalance] = useState(0);
 
   // Fetch NFT balances
   useEffect(() => {
@@ -54,18 +30,19 @@ const Profile = ({
       const getNftBalances = async () => {
         const dnftContract = new web3.eth.Contract(ABIS.ABIDNFT, addresses.dnft);
         const totalNftBalance = await dnftContract.methods.balanceOf(selectedAddress).call();
+        setNftNumberBalance(totalNftBalance);
         const nftBalances = [];
 
         for (let i = 0; i < totalNftBalance; i++) {
           const tokenId = await dnftContract.methods.tokenOfOwnerByIndex(selectedAddress, i).call();
-    // Generate the image URL based on the tokenId
-    const imageUrl = `https://dnxt.app/images/${tokenId}.jpg`;
-    // Add this information to nftDetails object.
-    const nftDetails = {
-      tokenId,
-      imageUrl,
-    };
-    nftBalances.push(nftDetails);
+          // Generate the image URL based on the tokenId
+          const imageUrl = `https://dnxt.app/images/${tokenId}.jpg`;
+          // Add this information to nftDetails object.
+          const nftDetails = {
+            tokenId,
+            imageUrl,
+          };
+          nftBalances.push(nftDetails);
         }
 
         setNftBalances(nftBalances);
@@ -73,100 +50,72 @@ const Profile = ({
       getNftBalances();
     }
   }, [connected, selectedAddress, web3]);
-  
+
 
   return (
-    connected ? (
-      window.ethereum.chainId === "0x89" ? (
-      <div>
-        <div className="profile-container">
-        <div className="profile-box">
-      <h2 className="section-title">Your Profile</h2>
-      <p className="section-title">Address: {selectedAddress}</p>
-
-      {/* Whitelist and Blacklist Status */}
-      {isWhitelisted ? (
-        <p>Status: Whitelisted</p>
-      ) : isBlacklisted ? (
-        <p>Status: Blacklisted</p>
-      ) : (
-        <button className="button" onClick={() => setIsKycStarted(true)}>Start KYC Process</button>
-      )}
-
-{isKycStarted ? (
-  // Render KYC form or other KYC-related content here
-  // Example: <KYCForm />
-  <KYC isKycStarted={isKycStarted} startKYC={startKYC} closeKYCModal={closeKYCModal} selectedAddress={selectedAddress} web3={web3} connected={connected} />
-) : null}
-
-    </div>
-          {/* Balances Section */}
-          <div className="profile-box">
-            <h2 className="section-title">Balances</h2>
-            <div className="section-content">
-              <div className="title">MATIC Balance:</div>
-              <div className="subtitle">
-                <b>
-                  {etherBalance > 0
-                    ? parseFloat(etherBalance).toFixed(3)
-                    : 0}{" "}
-                  <span>MATIC</span>
-                </b>
-              </div>
-              <div className="title">DNXT Balance:</div>
-              <div className="subtitle">
-                <b>
-                  {dnxtBalance > 0 ? parseFloat(dnxtBalance).toFixed(3) : 0}{" "}
-                  <span><img src={Logo} height="18px" alt="" /> DNXT</span>
-                </b>
-              </div>
-            </div>
-          </div>
-
-          {/* Activity Section */}
-          <div className="profile-box">
-            <h2 className="section-title">Activity</h2>
-            <div className="section-content">
-              {/* Example activity content */}
-              <ul>
-              <h2 className="section-title">You have not performed any transactions yet</h2>
-                <br></br>
-              </ul>
-            </div>
-          </div>
-
-{/* My NFTs Section */}
-<div className="profile-box">
-  <h2 className="section-title">My NFTs</h2>
-  <div className="section-content">
-    {nftBalances.length > 0 ? (
-      <div className="nft-list">
-        {nftBalances.map((nft, index) => (
-          <div key={index} className="nft-item">
-            <a
-              href={`https://dnxt.app/#/explorer/${nft.tokenId}`} // Replace with the actual explorer URL
-              target="_blank" // Open the link in a new tab/window
-              rel="noopener noreferrer" // Recommended for security reasons
+      connected ? (
+        window.ethereum.chainId === "0x89" ? (
+          <Box maxW="1200px" bg="var(--color-8)" borderRadius="16px" m="0 auto" p="20px" mt="128px" display="flex" flexWrap="wrap" justifyContent="center" alignItems="center">
+          <Box {...commonBoxStyles} margin="16px" marginTop="0px" textAlign="center">
+              <UserStatus
+                selectedAddress={selectedAddress}
+                web3={web3}
+                connected={connected}
+              />
+            </Box>
+            <Box {...commonBoxStyles} margin="16px">
+              <Portfolio dnxtBalance={dnxtBalance} etherBalance={etherBalance} nftNumberBalance={nftNumberBalance} />
+            </Box>
+            <Box
+              display="grid"
+              gridTemplateColumns="repeat(4, 1fr)"
+              gap="16px"
+              mt="16px"
+              {...commonBoxStyles}
             >
-              <label className="subtitle">Diamond ID: {nft.tokenId}</label>
-              <img src={nft.imageUrl} alt={`Diamond #${nft.tokenId}`} />
-            </a>
-            {/* Add more NFT details */}
-          </div>
-        ))}
-      </div>
-    ) : (
-      <h2 className="section-title">You currently have no diamonds.</h2>
-    )}
-  </div>
-</div>
+              {nftBalances.length > 0 ? (
+                nftBalances.map((nft, index) => (
+                  <Box
+                    key={index}
+                    {...commonBoxStyles}
+                    textAlign="center"
+                    mb="16px"
+                  >
+                    <Box color="var(--white)" fontWeight="300" fontSize="16px">
+                      {nft.tokenId}
+                    </Box>
+                    <a
+                      href={`https://dnxt.app/#/explorer/${nft.tokenId}`} // Replace with the actual explorer URL
+                      target="_blank" // Open the link in a new tab/window
+                      rel="noopener noreferrer" // Recommended for security reasons
+                    >
+                      <Box as="img" src={nft.imageUrl} alt={`Diamond #${nft.tokenId}`} maxW="100%" maxH="150px" objectFit="cover" borderRadius="16px" />
+                    </a>
+                  </Box>
+                ))
+              ) : (
+                <Box
+                  as="h2"
+                  textAlign="center"
+                  {...commonBoxStyles}
+                  color="var(--white)"
+                  fontWeight="300"
+                  fontSize="16px"
+                  mt="16px"
+                  mb="16px"
+                >
+                  You currently have no diamonds.
+                </Box>
+              )}
+            </Box>
+            </Box>
+        ) : (
+          <SwitchToPolygon connectWallet={connectWallet} connected={connected} />
+        )
+        ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="button" onClick={() => connectWallet()}>Connect</button></>)
 
-        </div>
-      </div>
-            ) : (<><br></br><br></br><br></br><br></br><br></br><SwitchToPolygon connectWallet={connectWallet} connected={connected} /></>)
-            ) : (<><br></br><br></br><br></br><br></br><br></br><br></br><button className="button" onClick={() => connectWallet()}>Connect</button></>)
-          );
-        };
-
+      
+  );
+};
 
 export default Profile;

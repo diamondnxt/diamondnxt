@@ -256,7 +256,7 @@ header {
 .modalOverlay {
   position: absolute; /* Absolute positioning */
   bottom: 100%; /* Aligns the bottom of the modal with the top of the menuBar */
-  min-width: 150px;
+  min-width: 190px;
   width: fit-content;
   height:fit-content;
   background: var(--color-7);

@@ -4,6 +4,9 @@
   "homepage": "https://dnxt.app/",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^1.8.8",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
     "@metamask/jazzicon": "^2.0.0",
@@ -16,6 +19,7 @@
     "axios": "^1.5.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "framer-motion": "^4.0.0",
     "react": "^17.0.2",
     "react-alice-carousel": "^2.5.1",
     "react-bootstrap-modal": "^4.2.0",

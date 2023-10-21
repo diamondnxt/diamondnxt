@@ -2,3 +2,5 @@
 -Whitelist dashboard: include role verification of selected address and show wether the connected address can whitelist or blacklist.
 - nft dashboard: allow override ID to generate json. Try to store json directly in a file ready to upload to github with a push.
 -Redeem: add information about the redeem process, add pickup/delivery option, create pickup flow, create delivery flow (address verification, insurance, delivery company, delivery box, security options, etc)
+-Staking needs to be redone, possibly change title to DNXT.
+-Lending platform to be created

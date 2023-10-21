@@ -30,12 +30,14 @@ const DeliveryOptions = ({ nextStep }) => {
       {selectedOption === 'delivery' ? (
         <div className="delivery-content">
           {/* Content for the delivery option */}
-          <p>Delivery Content Here</p>
+          <p>Delivery Options (Coming Soon):
+Choose from a variety of secure and reliable delivery options, including insured and tracked shipments for maximum security. Rest assured that your items are in safe hands during transit.
+</p>
         </div>
       ) : selectedOption === 'pickup' ? (
         <div className="pickup-content">
           {/* Content for the pickup option */}
-          <p>Pickup Content Here</p>
+          <p>Enjoy the convenience of our upcoming Pickup service, designed to provide you with a hassle-free way to collect your items. Stay tuned for more details on this feature.</p>
           <button className="button" onClick={handleAccept}>
             Accept
           </button>

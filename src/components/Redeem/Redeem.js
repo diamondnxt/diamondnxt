@@ -48,11 +48,12 @@ const Redeem = ({
           <>
             {showModal && (
               <div>
-                <button className="button" onClick={previousStep}>
-                  Back
-                </button>
+                <p>You are about to initiate the redemption process, which will lock your NFT. Please be aware that once the redemption is initiated, you will no longer have access to your NFT.</p>
                 <button className="button" onClick={redeemSelectedDiamonds}>
                   Confirm
+                </button>
+                <button className="button" onClick={previousStep}>
+                  Back
                 </button>
                 <button className="button" onClick={closeModal}>
                   Cancel
