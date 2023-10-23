@@ -46,37 +46,42 @@
   padding: 5px 0;
 }
 
+/* Container holding your dropdown, this should be relative */
+.dropdown-container {
+  position: relative;
+  /* other styles as needed */
+}
+
+/* Styles for the dropdown list */
 .listbox-options {
+  position: absolute;
+  top: 100%; /* Positioning the dropdown right below the container */
+  z-index: 1000; /* High z-index to ensure it is above other elements */
   max-height: 200px;
   overflow-y: auto;
   background-color: var(--white);
   border: 1px solid #d1d5db;
   border-radius: 5px;
-  padding: 4px;
+  padding: 12px; /* Adjust padding as needed */
+  width: max-content; /* Makes the width fit the longest text item */
+  min-width: 160px; /* Optional: Set a minimum width to ensure usability */
 }
 
-.listbox-options .listbox-option {
-  cursor: default;
-  padding: 2px 8px;
-}
-
-.listbox-options .listbox-option-active {
-  background-color: #4f9ee3;
-  color: var(--white);
-}
-
+/* Adjusting the individual option styles */
 .custom-option {
   cursor: default;
   position: relative;
-  padding-top: 2px;
-  padding-left: 10px;
-  padding-right: 4px;
+  padding: 8px 10px; /* Increased padding for better spacing */
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
 }
+
 
 .custom-active {
   color: #000000;
   background-color: var(--white);
-  border-radius: 16px;
+  border-radius: 5px;
+  padding: 8px 10px; /* Increased padding for better spacing */
+
 }
 
 .custom-inactive {

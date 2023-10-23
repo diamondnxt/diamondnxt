@@ -5,9 +5,10 @@ import SearchOptions from './SearchOptions';
 import FilterOptions from './FilterOptions';
 import * as ABIS from "./../../constants/ABIS";
 import * as addresses from "./../../constants/addresses";
+import Price from '../Price/Price.json'
 
 const Explorer = ({ connected, web3, connectWallet }) => {
-    const [nftBalances, setNftBalances] = useState([]);
+    const [nftData, setNftData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [displayMode, setDisplayMode] = useState('list');
@@ -17,18 +18,48 @@ const Explorer = ({ connected, web3, connectWallet }) => {
     }
 
     const handleFilter = (traitType, value) => {
-        const results = nftBalances.filter(item =>
+        const results = nftData.filter(item =>
             item.attributes.some(attr => attr.trait_type === traitType && attr.value === value)
         );
         setFilteredData(results);
     };
 
     const handleSearch = (searchTerm) => {
-        const results = nftBalances.filter(item =>
+        const results = nftData.filter(item =>
             item.name.includes(searchTerm)
         );
         setFilteredData(results);
     };
+
+    
+// This function is called whenever the sort option changes
+const handleSortOptionChange = (option) => {
+    console.log('Current sort option:', option); // Log the current selected option
+
+    // Create a new array from the current state to avoid direct mutation
+    let sortedData = [...filteredData];
+    switch(option) {
+        case 'Price low to high':
+            sortedData.sort((a, b) => a.price - b.price);
+            console.log('Sorted data (low to high):', sortedData); // Log the sorted array
+            break;
+        case 'Price high to low':
+            sortedData.sort((a, b) => b.price - a.price);
+            console.log('Sorted data (high to low):', sortedData); // Log the sorted array
+            break;
+        // ... handle other cases based on your sort options
+        default:
+            console.warn(`Unexpected sort option: '${option}', no sorting applied.`);
+            break;
+    }
+
+    // Assuming you have a state setter function for your sorted data
+    setFilteredData(sortedData);
+    console.log('Updated state:', sortedData); // Log the state after it's been set
+};
+
+
+
 
     useEffect(() => {
         if (connected) {
@@ -52,7 +83,7 @@ const Explorer = ({ connected, web3, connectWallet }) => {
 
                         // Combine the token data with the fetched data
                         const combinedData = {
-                            id: tokenId,
+                            id: tokenId, price: Price[tokenId], 
                             ...nftData
                         };
                         tempNftBalances.push(combinedData);
@@ -61,7 +92,7 @@ const Explorer = ({ connected, web3, connectWallet }) => {
                     }
                 }
 
-                setNftBalances(tempNftBalances);
+                setNftData(tempNftBalances);
                 setFilteredData(tempNftBalances);
                 setIsLoading(false);
             };
@@ -74,8 +105,11 @@ const Explorer = ({ connected, web3, connectWallet }) => {
         <div className="container">
             <FilterOptions data={filteredData} onFilter={handleFilter} className="filter-container" />
             <div className="explorer-container">
-                <SearchOptions onChangeDisplayMode={handleDisplayModeChange} onSearch={handleSearch} />
-                {
+            <SearchOptions 
+                onChangeDisplayMode={handleDisplayModeChange} 
+                onSearch={handleSearch} 
+                onSortOptionChange={handleSortOptionChange} // Pass the handler to the child component
+            />                {
                     connected ? (
                         !isLoading ? (
                             filteredData.map((nft, index) => {

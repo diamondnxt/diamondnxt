@@ -19,7 +19,7 @@ const ListItem = ({ data }) => {
         <img src={image} alt={name} className="diamond-image" />
       </div>
       <div className="list-cell">{name}</div>
-      <div className="list-cell">${price}0</div>
+      <div className="list-cell">${price}</div>
       {filteredAttributes.map((attr, idx) => (
         <div className="list-cell" key={idx}>
           {attr.value}
