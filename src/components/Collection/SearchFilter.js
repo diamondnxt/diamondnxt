@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const SearchFilter = ({ onSearch }) => {
+const SearchFilter = ({ onSearch, nftData }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = () => {

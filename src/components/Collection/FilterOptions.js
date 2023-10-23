@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Search.css';
 import ReactSlider from 'react-slider';
 
-const FilterOptions = ({ data, onFilter }) => {
+const FilterOptions = ({ data, onFilter, onFilterPrice }) => {
     const [openPrimary, setOpenPrimary] = useState(null); // Track the primary option selected
     const [openTrait, setOpenTrait] = useState(null);
     const [minPrice, setMinPrice] = useState(0);
@@ -33,8 +33,8 @@ const FilterOptions = ({ data, onFilter }) => {
 
     const handleApplyPriceFilter = () => {
         // This function would handle the price filtering logic based on minPrice and maxPrice
-        onFilter('price', { min: minPrice, max: maxPrice });
-    }
+        onFilterPrice({ min: minPrice, max: maxPrice }); // <-- Use the dedicated price filter handler
+    };
 
     const handleSliderChange = ([min, max]) => {
         setMinPrice(min);
@@ -42,9 +42,9 @@ const FilterOptions = ({ data, onFilter }) => {
     }
 
     return (
-        <div className="filter-container">
+        <div className="sidebar">
             {/* Primary options */}
-            {['Status', 'Price', 'Properties'].map(option => (
+            {['Status', 'Price', 'Traits'].map(option => (
                 <h3 key={option} onClick={() => setOpenPrimary(option === openPrimary ? null : option)}>
                     {option}
                 </h3>
@@ -77,7 +77,7 @@ const FilterOptions = ({ data, onFilter }) => {
             )}
 
             {/* If properties are selected, then display the attributes */}
-            {openPrimary === 'Properties' && Object.keys(attributeCounts).map(traitType => (
+            {openPrimary === 'Traits' && Object.keys(attributeCounts).map(traitType => (
                 <div key={traitType}>
                     <h4 
                         className="trait-toggle" 

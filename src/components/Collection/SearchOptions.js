@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SearchFilter from "./SearchFilter";
 import { Listbox, Transition } from '@headlessui/react'
 
-const SearchOptions = ({ onChangeDisplayMode, onSearch, onSortOptionChange }) => {
+const SearchOptions = ({ onChangeDisplayMode, onSearch, onSortOptionChange, nftData }) => {
     const [activeTab, setActiveTab] = useState('list');    
 
     const sortOptions = [
@@ -39,7 +39,7 @@ const SearchOptions = ({ onChangeDisplayMode, onSearch, onSortOptionChange }) =>
 
     return (
         <div className="tabs-container">
-            <SearchFilter onSearch={onSearch} />
+            <SearchFilter onSearch={onSearch} nftData={nftData}/>
             <div className="dropdown-container">                
                 <Listbox value={selectedSort} onChange={handleSortChange}>
                     <Listbox.Button className={selectedSort ? 'custom-active' : 'custom-inactive'}>

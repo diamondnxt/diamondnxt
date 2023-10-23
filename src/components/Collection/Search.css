@@ -9,7 +9,7 @@ body {
     padding-top: 50px; /* Padding equal to the height of the tabs, so content isn't overlapped */
 }
 
-.filter-container {
+.sidebar {
     flex: 1;
     position: fixed;
     left: 0;
@@ -20,7 +20,6 @@ body {
     color: var(--color-4);
     background-color: var(--color-9);
     padding: 20px;
-    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
 }
 .search-container {
     display: flex;
@@ -46,6 +45,30 @@ body {
     margin-left: 210px; /* Filter container width + padding/shadow */
     margin-top: 64px;
 }
+
+
+/* Style for the filter sections */
+.filter-section {
+    border-bottom: 1px solid #ddd; /* Horizontal line */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Full width */
+        height: 75vh; /* 75% of viewport height */
+        bottom: 0; /* Stick to bottom */
+        top: auto; /* Auto top */
+        overflow-y: scroll; /* Allow scrolling */
+    }
+
+    .filter-section {
+        /* Adjustments for filter sections if needed */
+        margin-bottom: 20px; /* Space between sections */
+
+    }
+}
+
 
 
 .trait-toggle {

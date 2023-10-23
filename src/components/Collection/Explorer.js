@@ -24,6 +24,17 @@ const Explorer = ({ connected, web3, connectWallet }) => {
         setFilteredData(results);
     };
 
+
+    // This function is called whenever a new price filter is applied.
+    const handleFilterPrice = (values) => {
+        const { min, max } = values;
+        const filteredData = nftData.filter(nft => nft.price >= min && nft.price <= max);
+
+        setFilteredData(filteredData); // Update the same state as in handleFilter
+    };
+
+
+
     const handleSearch = (searchTerm) => {
         const results = nftData.filter(item =>
             item.name.includes(searchTerm)
@@ -31,32 +42,32 @@ const Explorer = ({ connected, web3, connectWallet }) => {
         setFilteredData(results);
     };
 
-    
-// This function is called whenever the sort option changes
-const handleSortOptionChange = (option) => {
-    console.log('Current sort option:', option); // Log the current selected option
 
-    // Create a new array from the current state to avoid direct mutation
-    let sortedData = [...filteredData];
-    switch(option) {
-        case 'Price low to high':
-            sortedData.sort((a, b) => a.price - b.price);
-            console.log('Sorted data (low to high):', sortedData); // Log the sorted array
-            break;
-        case 'Price high to low':
-            sortedData.sort((a, b) => b.price - a.price);
-            console.log('Sorted data (high to low):', sortedData); // Log the sorted array
-            break;
-        // ... handle other cases based on your sort options
-        default:
-            console.warn(`Unexpected sort option: '${option}', no sorting applied.`);
-            break;
-    }
+    // This function is called whenever the sort option changes
+    const handleSortOptionChange = (option) => {
+        console.log('Current sort option:', option); // Log the current selected option
 
-    // Assuming you have a state setter function for your sorted data
-    setFilteredData(sortedData);
-    console.log('Updated state:', sortedData); // Log the state after it's been set
-};
+        // Create a new array from the current state to avoid direct mutation
+        let sortedData = [...filteredData];
+        switch (option) {
+            case 'Price low to high':
+                sortedData.sort((a, b) => a.price - b.price);
+                console.log('Sorted data (low to high):', sortedData); // Log the sorted array
+                break;
+            case 'Price high to low':
+                sortedData.sort((a, b) => b.price - a.price);
+                console.log('Sorted data (high to low):', sortedData); // Log the sorted array
+                break;
+            // ... handle other cases based on your sort options
+            default:
+                console.warn(`Unexpected sort option: '${option}', no sorting applied.`);
+                break;
+        }
+
+        // Assuming you have a state setter function for your sorted data
+        setFilteredData(sortedData);
+        console.log('Updated state:', sortedData); // Log the state after it's been set
+    };
 
 
 
@@ -83,7 +94,7 @@ const handleSortOptionChange = (option) => {
 
                         // Combine the token data with the fetched data
                         const combinedData = {
-                            id: tokenId, price: Price[tokenId], 
+                            id: tokenId, price: Price[tokenId],
                             ...nftData
                         };
                         tempNftBalances.push(combinedData);
@@ -103,13 +114,18 @@ const handleSortOptionChange = (option) => {
 
     return (
         <div className="container">
-            <FilterOptions data={filteredData} onFilter={handleFilter} className="filter-container" />
+            <FilterOptions
+                data={filteredData}
+                onFilter={handleFilter}
+                onFilterPrice={handleFilterPrice}
+            />
             <div className="explorer-container">
-            <SearchOptions 
-                onChangeDisplayMode={handleDisplayModeChange} 
-                onSearch={handleSearch} 
-                onSortOptionChange={handleSortOptionChange} // Pass the handler to the child component
-            />                {
+                <SearchOptions
+                    onChangeDisplayMode={handleDisplayModeChange}
+                    onSearch={handleSearch}
+                    onSortOptionChange={handleSortOptionChange} // Pass the handler to the child component
+                    nftData={nftData}
+                />                {
                     connected ? (
                         !isLoading ? (
                             filteredData.map((nft, index) => {
