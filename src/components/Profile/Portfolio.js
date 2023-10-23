@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { SimpleGrid, Box } from '@chakra-ui/react';
 import MiniStatistics from './Ministatistics';
 
-const Portfolio = ({ dnxtBalance, etherBalance, nftNumberBalance }) => {
+const Portfolio = ({ dnxtBalance, etherBalance, nftNumberBalance, totalDiamondValue }) => {
     const [maticPrice, setMaticPrice] = useState(0);
     const dnxtPrice = 0.3;
 
@@ -24,9 +24,8 @@ const Portfolio = ({ dnxtBalance, etherBalance, nftNumberBalance }) => {
 
     const maticValue = etherBalance * maticPrice;
     const dnxtValue = dnxtBalance * dnxtPrice;
-    const diamondValue = 100; // Replace with the actual calculated diamond value
 
-    const portfolioValue = maticValue + dnxtValue + diamondValue;
+    const portfolioValue = maticValue + dnxtValue + totalDiamondValue;
 
     return (
         <>
@@ -35,22 +34,22 @@ const Portfolio = ({ dnxtBalance, etherBalance, nftNumberBalance }) => {
         <Box bg="var(--color-9)" p={4} borderRadius="md">
             <MiniStatistics name="Matic Value" value={`$${maticValue.toFixed(2)}`} />
           </Box>
-          <Box>
+          <Box bg="var(--color-7)" p={4} borderRadius="md">
             <MiniStatistics name="Matic" value={`${etherBalance > 0 ? parseFloat(etherBalance).toFixed(2) : 0}`} />
           </Box>
           <Box bg="var(--color-9)" p={4} borderRadius="md">
             <MiniStatistics name="DNXT Value" value={`$${dnxtValue.toFixed(2)}`} />
           </Box>
-          <Box>
+          <Box bg="var(--color-7)" p={4} borderRadius="md">
             <MiniStatistics name="DNXT" value={`${dnxtBalance > 0 ? parseFloat(dnxtBalance).toFixed(2) : 0}`} />
           </Box>
           <Box bg="var(--color-9)" p={4} borderRadius="md">
-            <MiniStatistics name="Diamond Value" value={`$${diamondValue.toFixed(2)}`} />
+            <MiniStatistics name="Diamond Value" value={`$${totalDiamondValue.toFixed(2)}`} />
           </Box>
-          <Box>
+          <Box bg="var(--color-7)" p={4} borderRadius="md">
           <MiniStatistics name="Diamonds" value={`${nftNumberBalance}`} />
           </Box>
-          <Box bg="var(--color-9)" p={4} borderRadius="md">
+          <Box bg="var(--color-6)" p={4} borderRadius="md">
             <MiniStatistics name="Portfolio Value" value={`$${portfolioValue.toFixed(2)}`} />
           </Box>
         </SimpleGrid>

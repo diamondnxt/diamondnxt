@@ -5,6 +5,7 @@ import * as ABIS from "../../constants/ABIS";
 import * as addresses from "../../constants/addresses";
 import UserStatus from "./UserStatus.js";
 import Portfolio from "./Portfolio.js";
+import Price from "../Price/Price.json"
 
 const commonBoxStyles = {
   bg: "var(--color-8)",
@@ -37,10 +38,12 @@ const Profile = ({
           const tokenId = await dnftContract.methods.tokenOfOwnerByIndex(selectedAddress, i).call();
           // Generate the image URL based on the tokenId
           const imageUrl = `https://dnxt.app/images/${tokenId}.jpg`;
+          const price = Price[tokenId];
           // Add this information to nftDetails object.
           const nftDetails = {
             tokenId,
             imageUrl,
+            price,
           };
           nftBalances.push(nftDetails);
         }
@@ -51,6 +54,9 @@ const Profile = ({
     }
   }, [connected, selectedAddress, web3]);
 
+  const totalDiamondValue = nftBalances.reduce((total, nft) => {
+    return total + (nft.price || 0);
+  }, 0);
 
   return (
       connected ? (
@@ -64,7 +70,7 @@ const Profile = ({
               />
             </Box>
             <Box {...commonBoxStyles} margin="16px">
-              <Portfolio dnxtBalance={dnxtBalance} etherBalance={etherBalance} nftNumberBalance={nftNumberBalance} />
+              <Portfolio dnxtBalance={dnxtBalance} etherBalance={etherBalance} nftNumberBalance={nftNumberBalance} totalDiamondValue={totalDiamondValue} />
             </Box>
             <Box
               display="grid"
