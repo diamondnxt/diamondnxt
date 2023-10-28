@@ -251,6 +251,7 @@ header {
 
 #userInfo {
   position: relative; /* Ensure the user info container is relative */
+  z-index: 1111;
 }
 
 .modalOverlay {

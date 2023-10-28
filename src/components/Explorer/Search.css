@@ -9,41 +9,68 @@ body {
     padding-top: 50px; /* Padding equal to the height of the tabs, so content isn't overlapped */
 }
 
-.sidebar {
-    flex: 1;
+
+/* styles.css */
+
+.topbar-container {
     position: fixed;
+    top: 0;
     left: 0;
-    top: 64px; /* Start below the tabs */
-    bottom: 0;
-    max-width: 200px;
-    overflow-y: auto;
-    color: var(--color-4);
-    background-color: var(--color-9);
-    padding: 20px;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: wrap;
+    padding: 10px 20px;
+    color: white;
+    z-index: 1000; /* to ensure it stays on top */
+    margin-left: 300px; /* Adjust based on your sidebar's width */
 }
+
 .search-container {
     display: flex;
     align-items: center;
     gap: 10px;  /* Adjust the gap to your liking */
 }
 
-.tabs-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+.topbar-item {
+    margin-right: 15px; /* consistent spacing instead of 'gap' */
+}
+
+.buttons-container {
     display: flex;
+    gap: 10px; /* space between the buttons */
     align-items: center;
-    gap: 10px;
-    background-color: var(--color-9);
-    padding: 10px;
-    z-index: 1000; /* to ensure it stays on top */
+    border-radius: 8px;
+    background-color: var(--color-7);
+}
+
+.topbar-search {
+    flex-grow: 1; /* allows this element to take up the remaining space */
+    margin: 0 15px;
+}
+
+.topbar-tabs {
+    display: flex;
+    gap: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 979px) {
+    .topbar-container {
+        flex-direction: column;
+        margin-left: 64px; /* Adjust based on your sidebar's responsive width */
+    }
+
+    .topbar-search {
+        width: 100%; /* full width in a vertical layout */
+        margin-bottom: 15px; /* space between items in a column */
+    }
 }
 
 .explorer-container {
-    flex: 3;
-    margin-left: 210px; /* Filter container width + padding/shadow */
-    margin-top: 64px;
+    margin-left: 210px; /* space for the sidebar */
+    margin-top: 64px; /* space for the topbar, adjust as needed */
 }
 
 
@@ -52,21 +79,26 @@ body {
     border-bottom: 1px solid #ddd; /* Horizontal line */
 }
 
-/* Media query for smaller screens */
-@media screen and (max-width: 768px) {
-    .sidebar {
-        width: 100%; /* Full width */
-        height: 75vh; /* 75% of viewport height */
-        bottom: 0; /* Stick to bottom */
-        top: auto; /* Auto top */
-        overflow-y: scroll; /* Allow scrolling */
-    }
 
-    .filter-section {
-        /* Adjustments for filter sections if needed */
-        margin-bottom: 20px; /* Space between sections */
+/* Explorer.css */
+.footer-content {
+    padding: 20px;
+    margin-bottom: 80px;
+    color: white;
+}
 
-    }
+.market-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adjust based on your preference */
+    margin-top: 20px; /* Optional: for extra space between text and logos */
+    padding-bottom: 20px;
+}
+
+.market-logo {
+    width: 32px; /* Or the appropriate size for your design */
+    height: auto; /* Maintain aspect ratio */
 }
 
 
@@ -135,12 +167,7 @@ body {
     margin-bottom: 5px;
 }
 
-.tabs-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
+
 
 .tab {
     display: flex;
@@ -149,9 +176,9 @@ body {
     gap: 5px;  /* spacing between SVG and text */
     padding: 10px 20px;  /* adjust padding as needed */
     border: none;
-    background-color: #eee;  /* sample background color */
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border-radius: 8px;
 }
 
 .tab:hover {

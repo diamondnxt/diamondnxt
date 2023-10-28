@@ -1,5 +1,5 @@
 import React from "react";
-import Price from "./../Price/Price.json";
+import Price from "../../Price/Price.json";
 
 const ListItem = ({ data }) => {
   // Destructure the data to extract only the required fields
@@ -7,7 +7,7 @@ const ListItem = ({ data }) => {
 
   // Filter attributes to get only cut, color, clarity, and caratWeight
   const filteredAttributes = attributes.filter((attr) =>
-    ["Cut", "Color", "Clarity", "Carat Weight"].includes(attr.trait_type)
+    ["Cut", "Color", "Clarity", "Carat Weight", "Fluorescence", "Polish", "Symmetry", "Shape"].includes(attr.trait_type)
   );
 
   // Retrieve the price for the corresponding NFT ID

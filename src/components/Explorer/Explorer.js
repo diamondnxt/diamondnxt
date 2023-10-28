@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Card from "./Card";
-import ListItem from "./ListItem";
-import SearchOptions from './SearchOptions';
-import FilterOptions from './FilterOptions';
-import * as ABIS from "./../../constants/ABIS";
-import * as addresses from "./../../constants/addresses";
+import ExplorerTopbar from './ExplorerTopbar';
+import * as ABIS from "../../constants/ABIS";
+import * as addresses from "../../constants/addresses";
 import Price from '../Price/Price.json'
+import ExplorerDisplay from './ExplorerDisplay';
+import ExplorerSidebar from './ExplorerSidebar';
 
 const Explorer = ({ connected, web3, connectWallet }) => {
     const [nftData, setNftData] = useState([]);
@@ -50,11 +49,11 @@ const Explorer = ({ connected, web3, connectWallet }) => {
         // Create a new array from the current state to avoid direct mutation
         let sortedData = [...filteredData];
         switch (option) {
-            case 'Price low to high':
+            case 'Price: low to high':
                 sortedData.sort((a, b) => a.price - b.price);
                 console.log('Sorted data (low to high):', sortedData); // Log the sorted array
                 break;
-            case 'Price high to low':
+            case 'Price: high to low':
                 sortedData.sort((a, b) => b.price - a.price);
                 console.log('Sorted data (high to low):', sortedData); // Log the sorted array
                 break;
@@ -81,9 +80,13 @@ const Explorer = ({ connected, web3, connectWallet }) => {
                 const totalSupply = await dnftContract.methods.totalSupply().call();
                 const tempNftBalances = [];
 
-                for (let i = 0; i < totalSupply; i++) {
-                    const tokenId = await dnftContract.methods.tokenByIndex(i).call();
-                    const tokenUri = await dnftContract.methods.tokenURI(tokenId).call();
+                for (let i = 1; i < totalSupply; i++) {
+                    //Remove comments and replace to go back to checking tokenByindex
+                //for (let i = 0; i < totalSupply; i++) {
+                        //const tokenId = await dnftContract.methods.tokenByIndex(i).call();
+                    //const tokenUri = await dnftContract.methods.tokenURI(tokenId).call();
+                    const tokenId = i;
+                    const tokenUri = await dnftContract.methods.tokenURI(i).call();
 
                     try {
                         const response = await fetch(tokenUri);
@@ -114,39 +117,24 @@ const Explorer = ({ connected, web3, connectWallet }) => {
 
     return (
         <div className="container">
-            <FilterOptions
+            <ExplorerTopbar
+                onChangeDisplayMode={handleDisplayModeChange}
+                onSearch={handleSearch}
+                onSortOptionChange={handleSortOptionChange} // Pass the handler to the child component
+                nftData={nftData}
+            />
+            <ExplorerSidebar
                 data={filteredData}
                 onFilter={handleFilter}
                 onFilterPrice={handleFilterPrice}
             />
-            <div className="explorer-container">
-                <SearchOptions
-                    onChangeDisplayMode={handleDisplayModeChange}
-                    onSearch={handleSearch}
-                    onSortOptionChange={handleSortOptionChange} // Pass the handler to the child component
-                    nftData={nftData}
-                />                {
-                    connected ? (
-                        !isLoading ? (
-                            filteredData.map((nft, index) => {
-                                switch (displayMode) {
-                                    case 'list':
-                                        return <ListItem data={nft} key={index} />;
-                                    case 'card':
-                                        return <Card data={nft} key={index} />;
-                                    default:
-                                        return null;
-                                }
-                            })
-                        ) : (
-                            <p className='title'>Loading...</p>
-                        )
-                    ) : (
-                        <button className='button' onClick={connectWallet}>Connect</button>
-                    )
-                }
-
-            </div>
+            <ExplorerDisplay 
+                isLoading={isLoading}
+                connected={connected}
+                filteredData={filteredData}
+                displayMode={displayMode}
+                connectWallet={connectWallet}
+            />
         </div>
     );
 }

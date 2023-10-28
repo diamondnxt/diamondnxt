@@ -84,7 +84,7 @@
   }
   
   .stake-button {
-    border-radius: 16px;
+    border-radius: 12px;
     color: #ffffff;
     font-size: 17px;
     font-weight: bold;
@@ -99,7 +99,7 @@
   
   .stake-button:hover {
     background-color: var(--color-6);
-    border-radius: 16px;
+    border-radius: 12px;
     color: #ffffff;
     
   }
@@ -128,7 +128,7 @@
     background-color: var(--color-7); /* Default background color */
     color: var(--color-6); /* Default text color */
     border: none;
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 8px 16px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;

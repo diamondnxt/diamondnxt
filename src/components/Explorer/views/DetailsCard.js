@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from 'react-router-dom';
 
-const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
+const DetailsCard = ({ web3, connected, connectWallet, selectedAddress }) => {
     let { id } = useParams();
     const buyLink = `https://vitale.dnxt.app/token/POLYGON:0x97b984b5751009def5f50fdc51477e3821b53050:${id}`;
 
@@ -15,7 +15,7 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
 
 
       const attributesbox = () => {
-        let nftdata = require("../json/" + id + ".json");
+        let nftdata = require("../../json/" + id + ".json");
     
         return (
             <div className="attributes-container">                
@@ -91,4 +91,4 @@ const FullCard = ({ web3, connected, connectWallet, selectedAddress }) => {
     
 }
 
-export default FullCard;
+export default DetailsCard;

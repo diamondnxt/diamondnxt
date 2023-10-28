@@ -41,7 +41,7 @@ body {
 .button {
     background-color: var(--color-7);  /* Subtle Blue as primary button color */
     border: none;
-    border-radius: 16px;
+    border-radius: 12px;
     color: var(--color-1);            /* Lightest Gray for text */
     cursor: pointer;
     font-size: 16px;
