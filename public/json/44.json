@@ -1,0 +1,51 @@
+{
+    "name": "Vitale #44",
+    "description": "Heritage Collection: Combining tradition with technology",
+    "image": "https://dnxt.app/images/43.jpg",
+    "animation_url": "https://dnxt.app/videos/43.mp4",
+    "edition": 44,
+    "attributes": [
+      {
+        "trait_type": "Cut",
+        "value": ""
+      },
+      {
+        "trait_type": "Clarity",
+        "value": "SI1"
+      },
+      {
+        "trait_type": "Color",
+        "value": "Fancy Intense Yellowish Brown Natural Color"
+      },
+      {
+        "trait_type": "Carat Weight",
+        "value": 1.01
+      },
+      {
+        "trait_type": "Shape",
+        "value": "Oval"
+      },
+      {
+        "trait_type": "Symmetry",
+        "value": "Good"
+      },
+      {
+        "trait_type": "Fluorescence",
+        "value": ""
+      },
+      {
+        "trait_type": "Polish",
+        "value": "Very Good"
+      }
+    ],
+    "certificates": [
+      {
+        "issuer": "HRD",
+        "number": "987654321"
+      },
+      {
+        "issuer": "GIA",
+        "number": "123456789"
+      }
+    ]
+  }
