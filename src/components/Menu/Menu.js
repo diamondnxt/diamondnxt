@@ -1,24 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ImHome } from "@react-icons/all-files/im/ImHome";
-import { SiProducthunt } from "@react-icons/all-files/si/SiProducthunt";
 import { AiFillPieChart } from "@react-icons/all-files/ai/AiFillPieChart";
 import { DiGoogleAnalytics } from "@react-icons/all-files/di/DiGoogleAnalytics";
-import { AiOutlineMail } from "@react-icons/all-files/ai/AiOutlineMail";
 import { FaUserFriends } from "@react-icons/all-files/fa/FaUserFriends";
+import { GiInjustice } from "@react-icons/all-files/gi/GiInjustice";
 
 const Menu = () => {
 
     const menuItems = [
-        { name: 'Explorer', path: '/explorer', icon: <ImHome /> },
-        { name: 'Profile', path: '/profile', icon: <FaUserFriends /> },
-        { name: 'Dapp', path: '/dapp', icon: <SiProducthunt /> },
+      { name: 'Home', path: '/', icon: <ImHome /> },
+      { name: 'Explorer', path: '/explorer', icon: <ImHome /> },
+      { name: 'Profile', path: '/profile', icon: <FaUserFriends /> },
+      { name: 'DAO', path: 'https://www.tally.xyz/gov/dnxt', isExternal: true, icon: <GiInjustice /> },
         { name: 'Redeem', path: '/redeem', icon: <AiFillPieChart /> },
         { name: 'Staking', path: '/staking', icon: <DiGoogleAnalytics /> },
-        { name: 'Docs', path: 'https://github.com/diamondnxt', isExternal: true, icon: <AiOutlineMail /> },
     ];
 
-  return (
+    return (
     <>
       {menuItems.map(item => 
         item.isExternal ? (

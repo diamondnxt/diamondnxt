@@ -4,3 +4,23 @@
 -Redeem: add information about the redeem process, add pickup/delivery option, create pickup flow, create delivery flow (address verification, insurance, delivery company, delivery box, security options, etc)
 -Staking needs to be redone, possibly change title to DNXT.
 -Lending platform to be created
+
+-living package info
+- make multicall query in explorer
+- portfolio evolution (24h at least)
+
+Explorer:
+- Traits: add filters instead of substitute on multiple checks
+- Style:
+-- Card
+-- FullCard
+-- ListItem
+-- Sidebar
+-- Topbar
+
+- Fiat to crypto module
+
+- button add DNXT and DNFT to metamask
+
+
+Redeem modal style is broken

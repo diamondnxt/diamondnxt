@@ -1,14 +1,16 @@
-// ExplorerDisplay.js
 import React from 'react';
 import Card from "./views/Card";
 import ListItem from "./views/ListItem";
+import { SwitchToPolygon } from '../Network/SwitchNetwork';
 
 const ExplorerDisplay = ({ isLoading, connected, filteredData, displayMode, connectWallet }) => {
     return (
         <div className="explorer-container">
-            {
-                connected ? (
-                    !isLoading ? (
+            {connected ? (
+                window.ethereum.chainId === "0x89" ? (
+                    isLoading ? (
+                        <p className="subtitle">Loading...</p>
+                    ) : (
                         filteredData.map((nft, index) => {
                             switch (displayMode) {
                                 case 'list':
@@ -19,13 +21,19 @@ const ExplorerDisplay = ({ isLoading, connected, filteredData, displayMode, conn
                                     return null;
                             }
                         })
-                    ) : (
-                        <p className='title'>Loading...</p>
                     )
                 ) : (
-                    <button className='button' onClick={connectWallet}>Connect</button>
+                    <>
+                        <br /><br /><br /><br /><br />
+                        <SwitchToPolygon connectWallet={connectWallet} connected={connected} />
+                    </>
                 )
-            }
+            ) : (
+                <>
+                    <br /><br /><br /><br /><br /><br />
+                    <button className="button" onClick={connectWallet}>Connect</button>
+                </>
+            )}
         </div>
     );
 }

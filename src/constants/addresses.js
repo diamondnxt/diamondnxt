@@ -12,3 +12,7 @@ export const staking = "0xAEd5a28f97E95D9A68D3c812ff559cAFdE7f7BfC";
 export const redeem = "0x4426D2951Fbd23749F7A4D4D0a1357a1bd6a53B1";
 
 export const multicall = "0x11ce4B23bD875D7F5C6a31084f55fDe1e9A87507";
+
+export const timelock = "0x0Dc9fE4489c19fCa89d6F7300F56f82C1609DC50";
+
+export const governor = "0x8b45Ef4BA49DAa4f62BCD9F0c7696B6c80D8E903";
