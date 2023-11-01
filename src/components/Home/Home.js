@@ -11,7 +11,6 @@ import Opensea from './../../images/opensea.png'
 import Rarible from './../../images/rarible.png'
 
 // Constants for clarity and maintainability
-const LOGO_WIDTH = "128px";
 
 const Home = () => {
   return (
