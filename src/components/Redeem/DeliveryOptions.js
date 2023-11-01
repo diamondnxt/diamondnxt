@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../../style/Redeem.css';
 
 const DeliveryOptions = ({ nextStep }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -20,19 +21,21 @@ const DeliveryOptions = ({ nextStep }) => {
 
   return (
     <div className="delivery-options-container">
-      <div className="delivery-option">
-        <button className="button" onClick={delivery}>Delivery</button>
-      </div>
-      <div className="pickup-option">
-        <button className="button" onClick={pickup}>Pickup</button>
+      <div className="delivery-tabs">
+        <div className="delivery-option">
+          <button className="button" onClick={delivery}>Delivery</button>
+        </div>
+        <div className="pickup-option">
+          <button className="button" onClick={pickup}>Pickup</button>
+        </div>
       </div>
 
       {selectedOption === 'delivery' ? (
         <div className="delivery-content">
           {/* Content for the delivery option */}
           <p>Delivery Options (Coming Soon):
-Choose from a variety of secure and reliable delivery options, including insured and tracked shipments for maximum security. Rest assured that your items are in safe hands during transit.
-</p>
+            Choose from a variety of secure and reliable delivery options, including insured and tracked shipments for maximum security. Rest assured that your items are in safe hands during transit.
+          </p>
         </div>
       ) : selectedOption === 'pickup' ? (
         <div className="pickup-content">
