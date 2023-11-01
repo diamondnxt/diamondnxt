@@ -22,18 +22,14 @@ const ExplorerDisplay = ({ isLoading, connected, filteredData, displayMode, conn
                             }
                         })
                     )
-                ) : (
-                    <>
-                        <br /><br /><br /><br /><br />
+                    ) : (
                         <SwitchToPolygon connectWallet={connectWallet} connected={connected} />
-                    </>
-                )
-            ) : (
-                <>
-                    <br /><br /><br /><br /><br /><br />
-                    <button className="button" onClick={connectWallet}>Connect</button>
-                </>
-            )}
+                    )
+                  ) : (
+                    <button className="button" onClick={() => connectWallet()}>
+                      Connect
+                    </button>
+                  )}
         </div>
     );
 }

@@ -81,7 +81,7 @@ const ExplorerSidebar = ({ data, onFilter, onFilterPrice }) => {
     };
 
     const items = [
-        <ProSidebar className='sidebar'>
+        <ProSidebar>
             <SidebarHeader>
                 <div style={headerStyle}>
                     <img src={Logo} alt="DNXT.app Logo" style={logoStyle} />
@@ -172,7 +172,7 @@ const ExplorerSidebar = ({ data, onFilter, onFilterPrice }) => {
         </ProSidebar>
     ];
 
-    return <Sidebar background="var(--color9)" content={items}></Sidebar>;
+    return <Sidebar background="var(--color9)" className="sidebar" content={items}></Sidebar>;
 }
 
 
