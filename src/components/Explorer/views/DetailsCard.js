@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
 
 const DetailsCard = ({ web3, connected, connectWallet, selectedAddress }) => {
@@ -13,10 +13,22 @@ const DetailsCard = ({ web3, connected, connectWallet, selectedAddress }) => {
       );
       
 
+      const [nftdata, setNftData] = useState(null);
 
+      useEffect(() => {
+          // Fetch the JSON data when the component mounts
+          fetch(`https://dnxt.app/json/${id}.json`)
+              .then(response => response.json())
+              .then(data => setNftData(data))
+              .catch(error => console.error("Error fetching NFT data:", error));
+      }, [id]); // The dependency array ensures the fetch is re-run if the 'id' changes
+      
       const attributesbox = () => {
-        let nftdata = require("../../json/" + id + ".json");
-    
+          if (!nftdata) return null; // Return null or a loading spinner if the data hasn't been fetched yet
+      
+          // ... (rest of your function remains unchanged)
+      
+      
         return (
             <div className="attributes-container">                
                 <div className="primary-attributes">
@@ -54,7 +66,7 @@ const DetailsCard = ({ web3, connected, connectWallet, selectedAddress }) => {
         <>
             <div className="card-big">
                 <div className="card-big--image-container">
-                    <img className="card-big--image" src={"/images/" + id + ".jpg"} alt="Diamond" />
+                    <img className="card-big--image" src={"https://dnxt.app/images/" + id + ".jpg"} alt="Diamond" />
                     <div>
                     <Link className="attribute" to={"/explorer/" + (id - 1)}>
                             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
