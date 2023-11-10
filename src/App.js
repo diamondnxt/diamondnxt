@@ -2,13 +2,13 @@ import React from "react";
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Wallet from "./components/Wallet/Wallet";
 import Dapp from "./components/Dapp/Dapp.js";
-import Explorer from "./components/Collection/Explorer.js";
+import Explorer from "./components/Explorer/Explorer.js";
 import "./style/app.css";
 import Home from "./components/Home/Home.js";
 import Profile from "./components/Profile/Profile.js";
 import Redeem from "./components/Redeem/Redeem.js";
 import Staking from "./components/Staking/Staking.js";
-import FullCard from "./components/Collection/FullCard.js";
+import DetailsCard from "./components/Explorer/views/DetailsCard.js";
 import UserInfo from "./components/UserInfo/UserInfo.js";
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path="/explorer/:id" element={<FullCard {...walletProps} />} />
+                <Route path="/explorer/:id" element={<DetailsCard {...walletProps} />} />
                 <Route path="/explorer" element={<Explorer {...walletProps}/>} />
                 <Route path="/dapp" element={<Dapp {...walletProps} />} />
                 <Route path="/profile" element={<Profile {...walletProps} />} />

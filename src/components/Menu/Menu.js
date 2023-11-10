@@ -1,17 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ImHome } from "@react-icons/all-files/im/ImHome";
+import { AiFillPieChart } from "@react-icons/all-files/ai/AiFillPieChart";
+import { DiGoogleAnalytics } from "@react-icons/all-files/di/DiGoogleAnalytics";
+import { FaUserFriends } from "@react-icons/all-files/fa/FaUserFriends";
+import { GiInjustice } from "@react-icons/all-files/gi/GiInjustice";
 
 const Menu = () => {
-  const menuItems = [
-    { name: 'Explorer', path: '/explorer' },
-    { name: 'Profile', path: '/profile' },
-    { name: 'Dapp', path: '/dapp' },
-    { name: 'Redeem', path: '/redeem' },
-    { name: 'Staking', path: '/staking' },
-    { name: 'Docs', path: 'https://github.com/diamondnxt', isExternal: true },
-  ];
 
-  return (
+    const menuItems = [
+      { name: 'Home', path: '/', icon: <ImHome /> },
+      { name: 'Explorer', path: '/explorer', icon: <ImHome /> },
+      { name: 'Profile', path: '/profile', icon: <FaUserFriends /> },
+      { name: 'DAO', path: 'https://www.tally.xyz/gov/dnxt', isExternal: true, icon: <GiInjustice /> },
+        { name: 'Redeem', path: '/redeem', icon: <AiFillPieChart /> },
+        { name: 'Staking', path: '/staking', icon: <DiGoogleAnalytics /> },
+    ];
+
+    return (
     <>
       {menuItems.map(item => 
         item.isExternal ? (
@@ -20,6 +26,7 @@ const Menu = () => {
           </a>
         ) : (
           <Link key={item.name} className="menuItem" to={item.path}>
+            {/*item.icon*/}
             {item.name}
           </Link>
         )
