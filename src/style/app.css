@@ -8,7 +8,7 @@ html,
     --dark-blue: var(--color-9);
 
     --white: hsl(0, 0%, 100%);
-    --color-0: #E3E8ED;  /* Light Gray */
+    --color-0: #B22222;  /* Light Gray */
     --color-1: #CFD5DC;  /* Slightly Desaturated Blue Gray */
     --color-2: #BAC2CA;  /* Blue Gray */
     --color-3: #A5AEC0;  /* Deeper Blue Gray */
